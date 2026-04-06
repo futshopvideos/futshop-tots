@@ -121,25 +121,36 @@ body::before{
   isolation:isolate;
   background:linear-gradient(180deg,#081428 0%,#0e1f42 45%,#0a1830 75%,#070B1A 100%);
 }
-/* Gradientes atmosféricos */
+/* Cristal único — 130% escalado, mix-blend screen, animação sutil */
 .hero::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 100% 70% at 50% 0%,rgba(21,101,192,0.55) 0%,transparent 55%),
-    radial-gradient(ellipse 70% 50% at 15% 65%,rgba(47,107,255,0.25) 0%,transparent 50%),
-    radial-gradient(ellipse 60% 60% at 88% 55%,rgba(21,101,192,0.3) 0%,transparent 50%),
-    radial-gradient(ellipse 40% 40% at 50% 90%,rgba(245,197,66,0.06) 0%,transparent 50%);
-  pointer-events:none;z-index:2;
+  content:'';
+  position:absolute;top:50%;left:50%;
+  width:130%;height:130%;
+  background:url('/tots-b/assets/cristais-tots.webp') no-repeat center/cover;
+  opacity:0.5;
+  mix-blend-mode:screen;
+  filter:blur(0.5px) drop-shadow(0 0 80px rgba(21,101,192,0.6)) drop-shadow(0 0 160px rgba(66,165,245,0.4));
+  pointer-events:none;z-index:1;
+  animation:crystalAmbient 12s ease-in-out infinite;
 }
-/* Vignette radial */
+/* Gradientes atmosféricos + vignette por cima dos cristais */
 .hero::after{
   content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 100% 70% at 50% 0%,rgba(21,101,192,0.55) 0%,transparent 55%),
-    radial-gradient(ellipse 70% 50% at 15% 65%,rgba(47,107,255,0.2) 0%,transparent 50%),
-    radial-gradient(ellipse 60% 60% at 88% 55%,rgba(21,101,192,0.25) 0%,transparent 50%),
-    radial-gradient(ellipse at center,rgba(7,11,26,0) 0%,rgba(7,11,26,0.25) 50%,rgba(7,11,26,0.65) 100%);
+    radial-gradient(ellipse at 30% 40%,rgba(21,101,192,0.25) 0%,transparent 50%),
+    radial-gradient(ellipse at 70% 60%,rgba(66,165,245,0.2) 0%,transparent 50%),
+    radial-gradient(ellipse at center,rgba(7,11,26,0.4) 0%,rgba(7,11,26,0.6) 80%,rgba(7,11,26,0.85) 100%);
   pointer-events:none;z-index:2;
+  animation:lightShift 10s ease-in-out infinite;
+}
+@keyframes crystalAmbient{
+  0%,100%{opacity:0.45;transform:translate(-50%,-50%) scale(1) rotate(0deg)}
+  33%    {opacity:0.55;transform:translate(-50%,-52%) scale(1.02) rotate(0.5deg)}
+  66%    {opacity:0.5; transform:translate(-52%,-50%) scale(1.04) rotate(-0.3deg)}
+}
+@keyframes lightShift{
+  0%,100%{opacity:1}
+  50%    {opacity:0.85}
 }
 .hero-inner{
   position:relative;z-index:3;
@@ -252,73 +263,6 @@ body::before{
   position:absolute;inset:0;pointer-events:none;z-index:1;
   border-radius:16px;
   background:linear-gradient(135deg,rgba(245,197,66,0.05) 0%,transparent 50%);
-}
-/* ============================================================
-   CRYSTAL AMBIENCE — múltiplas camadas de profundidade
-============================================================ */
-.crystal-ambience{
-  position:absolute;inset:0;
-  z-index:1;pointer-events:none;overflow:hidden;
-}
-.crystal{
-  position:absolute;
-  background:url('/tots-b/assets/cristais-tots.webp') no-repeat center/contain;
-  pointer-events:none;
-}
-/* Canto superior esquerdo — grande */
-.crystal-1{
-  top:-10%;left:-15%;width:60%;height:80%;
-  opacity:0.55;transform:rotate(-15deg);
-  filter:drop-shadow(0 0 50px rgba(21,101,192,0.6));
-  animation:crystalF1 9s ease-in-out infinite;
-}
-/* Canto superior direito — grande, espelhado */
-.crystal-2{
-  top:-15%;right:-20%;width:65%;height:90%;
-  opacity:0.6;transform:rotate(25deg) scaleX(-1);
-  filter:drop-shadow(0 0 60px rgba(66,165,245,0.5));
-  animation:crystalF2 11s ease-in-out infinite;
-}
-/* Canto inferior esquerdo — médio */
-.crystal-3{
-  bottom:-20%;left:-10%;width:50%;height:70%;
-  opacity:0.45;transform:rotate(45deg);
-  filter:drop-shadow(0 0 40px rgba(21,101,192,0.5));
-  animation:crystalF3 13s ease-in-out infinite;
-}
-/* Canto inferior direito — médio, espelhado */
-.crystal-4{
-  bottom:-25%;right:-15%;width:55%;height:75%;
-  opacity:0.5;transform:rotate(-30deg) scaleX(-1);
-  filter:drop-shadow(0 0 50px rgba(66,165,245,0.6));
-  animation:crystalF4 10s ease-in-out infinite;
-}
-/* Centro de fundo — sutil, desfocado */
-.crystal-5{
-  top:20%;left:30%;width:40%;height:60%;
-  opacity:0.28;transform:rotate(10deg);
-  filter:blur(3px) drop-shadow(0 0 30px rgba(21,101,192,0.4));
-  animation:crystalF5 15s ease-in-out infinite;
-}
-@keyframes crystalF1{
-  0%,100%{transform:rotate(-15deg) translate(0,0) scale(1);opacity:0.55}
-  50%    {transform:rotate(-13deg) translate(10px,-10px) scale(1.03);opacity:0.65}
-}
-@keyframes crystalF2{
-  0%,100%{transform:rotate(25deg) scaleX(-1) translate(0,0);opacity:0.6}
-  50%    {transform:rotate(27deg) scaleX(-1) translate(-15px,10px);opacity:0.7}
-}
-@keyframes crystalF3{
-  0%,100%{transform:rotate(45deg) translate(0,0);opacity:0.45}
-  50%    {transform:rotate(43deg) translate(8px,-8px);opacity:0.55}
-}
-@keyframes crystalF4{
-  0%,100%{transform:rotate(-30deg) scaleX(-1) translate(0,0);opacity:0.5}
-  50%    {transform:rotate(-32deg) scaleX(-1) translate(-12px,-12px);opacity:0.6}
-}
-@keyframes crystalF5{
-  0%,100%{transform:rotate(10deg) translate(0,0) scale(1);opacity:0.28}
-  50%    {transform:rotate(12deg) translate(6px,-6px) scale(1.04);opacity:0.38}
 }
 
 /* Glow orbs */
@@ -825,11 +769,7 @@ html,body{overflow-x:hidden}
 
 /* ── 600px — Mobile médio (390px iPhone 14) ── */
 @media(max-width:600px){
-  /* Cristais menores no mobile, canto inferior some */
-  .crystal-1{width:45%;height:60%;opacity:0.4}
-  .crystal-2{width:50%;height:70%;opacity:0.45}
-  .crystal-3,.crystal-4{display:none}
-  .crystal-5{opacity:0.18;width:70%;height:50%;top:25%;left:15%}
+  .hero::before{width:200%;height:200%;opacity:0.4;filter:blur(1px) drop-shadow(0 0 60px rgba(21,101,192,0.5))}
   .navbar{padding:0 14px;height:54px}
   .navbar-logo img{height:26px}
   .navbar-cta{font-size:0.7rem;padding:7px 12px;letter-spacing:0}
@@ -935,13 +875,6 @@ html,body{overflow-x:hidden}
   <div class="glow-orb glow-orb-2"></div>
   <div class="glow-orb glow-orb-3"></div>
   <div class="crystals" id="heroCrystals"></div>
-  <div class="crystal-ambience" aria-hidden="true">
-    <div class="crystal crystal-1"></div>
-    <div class="crystal crystal-2"></div>
-    <div class="crystal crystal-3"></div>
-    <div class="crystal crystal-4"></div>
-    <div class="crystal crystal-5"></div>
-  </div>
   <div class="hero-inner">
 
     <!-- TEXT block (desktop: col 1 row 1 / mobile: 1st) -->
