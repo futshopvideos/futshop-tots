@@ -1166,7 +1166,7 @@ document.head.appendChild(s);
    CONSTANTS
 ============================================================ */
 const WA_LINK = 'https://chat.whatsapp.com/LpABjH9eVIsDesaqOfYRrK';
-const SHEET_URL = 'GOOGLE_APPS_SCRIPT_URL_PLACEHOLDER';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwzz1xGDeS54bQAIY6icgNzrog7E1BMJN3JASzlsRkqCu8FbmoOW3ccx5qIWQtBHh5B/exec';
 const urlParams = new URLSearchParams(window.location.search);
 
 /* ============================================================
@@ -1278,26 +1278,19 @@ document.getElementById('lead-form').addEventListener('submit',function(e){
   const whatsapp = document.getElementById('field-whatsapp').value.trim();
   if(!nome||!email||!whatsapp) return;
 
-  const payload = {
+  const formData = new URLSearchParams({
     nome, email, whatsapp,
     pagina: 'tots-b',
     variante: 'B',
     dominio: window.location.hostname,
-    data_hora: new Date().toISOString(),
+    origem: 'lp-form',
+    locale: 'BR',
     utm_source: urlParams.get('utm_source')||'',
-    utm_medium: urlParams.get('utm_medium')||'',
     utm_campaign: urlParams.get('utm_campaign')||'',
     utm_content: urlParams.get('utm_content')||''
-  };
+  });
 
-  if(SHEET_URL !== 'GOOGLE_APPS_SCRIPT_URL_PLACEHOLDER'){
-    fetch(SHEET_URL,{
-      method:'POST',
-      mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload)
-    }).catch(()=>{});
-  }
+  fetch(SHEET_URL,{method:'POST',body:formData}).catch(()=>{});
 
   closeModal();
   window.location.href = WA_LINK;
