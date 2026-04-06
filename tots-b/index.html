@@ -153,7 +153,7 @@ body::before{
   box-shadow:0 0 25px rgba(21,101,192,0.35),inset 0 0 12px rgba(21,101,192,0.08);
   animation:badgePulse 3s ease-in-out infinite;
 }
-.badge-top img{width:18px;height:18px;object-fit:contain}
+.badge-top img{width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1)}
 @keyframes badgePulse{
   0%,100%{box-shadow:0 0 25px rgba(21,101,192,0.35),0 0 0 0 rgba(21,101,192,0.1)}
   50%{box-shadow:0 0 40px rgba(21,101,192,0.6),0 0 0 8px rgba(21,101,192,0.04)}
@@ -258,7 +258,7 @@ body::before{
 .ticker::after{right:0;background:linear-gradient(270deg,#0e4a99,transparent)}
 .ticker-inner{
   display:flex;white-space:nowrap;
-  animation:tickerScroll 12s linear infinite;
+  animation:tickerScroll 8s linear infinite;
 }
 .ticker-inner:hover{animation-play-state:paused}
 .ticker-text{
@@ -1425,16 +1425,10 @@ function ctaNearToast(){
   const toastW    = 310; /* left(20) + max-width(290) */
   const toastTop  = window.innerHeight - 24 - toastH;
 
-  /* Block if any CTA overlaps toast area */
+  /* Block only if a CTA button overlaps the toast area */
   for(const el of document.querySelectorAll('.btn-cta,.navbar-cta')){
     const r = el.getBoundingClientRect();
     if(r.top < window.innerHeight && r.bottom > toastTop && r.left < toastW) return true;
-  }
-  /* Block if ticker is in the toast area (prevents overlap on first load) */
-  const ticker = document.querySelector('.ticker');
-  if(ticker){
-    const r = ticker.getBoundingClientRect();
-    if(r.top < window.innerHeight && r.bottom > toastTop) return true;
   }
   return false;
 }
