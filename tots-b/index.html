@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FutShop TOTS — Semana do Craque: The Last Dance</title>
+<meta name="description" content="O TOTS chegou. O maior desconto da história da Futshop também. Só quem está no grupo vai ter acesso."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ========================
+   RESET & BASE
+======================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Chakra Petch',sans-serif;
+  background:#070B1A;
+  color:#fff;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;outline:none;font-family:'Chakra Petch',sans-serif}
+
+/* ========================
+   VARIABLES
+======================== */
+:root{
+  --bg-main:#070B1A;
+  --bg-sec:#0F1733;
+  --blue-tots:#1565C0;
+  --blue-tots-light:#42A5F5;
+  --blue-fut:#2F6BFF;
+  --gold:#F5C542;
+  --gold-light:#FFD76A;
+  --white:#FFFFFF;
+  --gray:#B0BEC5;
+  --radius:12px;
+  --shadow-blue:0 0 40px rgba(21,101,192,0.4);
+  --shadow-gold:0 0 30px rgba(245,197,66,0.3);
+}
+
+/* ========================
+   PARTICLES CANVAS
+======================== */
+#particles{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;opacity:0.5;
+}
+
+/* ========================
+   NAVBAR
+======================== */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(7,11,26,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(21,101,192,0.25);
+  height:64px;
+  display:flex;align-items:center;
+  padding:0 24px;
+  transition:background 0.3s;
+}
+.navbar-inner{
+  max-width:1280px;width:100%;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.navbar-logo img{height:36px;width:auto}
+.navbar-cta{
+  background:linear-gradient(135deg,#F5C542,#FFD76A);
+  color:#070B1A;
+  font-family:'Russo One',sans-serif;
+  font-size:0.78rem;
+  letter-spacing:0.5px;
+  padding:9px 18px;
+  border-radius:6px;
+  display:flex;align-items:center;gap:6px;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 15px rgba(245,197,66,0.35);
+}
+.navbar-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(245,197,66,0.5)}
+.navbar-cta img{width:16px;height:16px;object-fit:contain}
+
+/* ========================
+   HERO SECTION
+======================== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  padding:96px 24px 60px;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(21,101,192,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(47,107,255,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(21,101,192,0.12) 0%, transparent 60%);
+  pointer-events:none;z-index:1;
+}
+.hero-inner{
+  position:relative;z-index:2;
+  max-width:1280px;width:100%;margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:center;
+}
+.hero-left{display:flex;flex-direction:column;gap:20px}
+
+/* Top badge */
+.badge-top{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(21,101,192,0.2);
+  border:1px solid rgba(21,101,192,0.6);
+  border-radius:30px;
+  padding:7px 16px;
+  width:fit-content;
+  font-size:0.78rem;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#42A5F5;
+  box-shadow:0 0 20px rgba(21,101,192,0.3);
+  animation:badgePulse 3s ease-in-out infinite;
+}
+.badge-top img{width:18px;height:18px;object-fit:contain}
+@keyframes badgePulse{
+  0%,100%{box-shadow:0 0 20px rgba(21,101,192,0.3),0 0 0 0 rgba(21,101,192,0.15)}
+  50%{box-shadow:0 0 30px rgba(21,101,192,0.5),0 0 0 6px rgba(21,101,192,0.05)}
+}
+
+/* Headline */
+.hero-headline{
+  font-family:'Russo One',sans-serif;
+  font-size:clamp(1.9rem,4vw,3.2rem);
+  line-height:1.15;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(21,101,192,0.3);
+}
+.hero-headline .gold{color:#F5C542}
+.hero-headline .blue{color:#42A5F5}
+
+/* Subheadline */
+.hero-sub{
+  font-size:clamp(0.95rem,1.5vw,1.1rem);
+  color:#B0BEC5;
+  line-height:1.65;
+  max-width:500px;
+}
+.hero-sub strong{color:#fff}
+
+/* CTA button */
+.btn-cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,#F5C542 0%,#FFD76A 50%,#F5C542 100%);
+  background-size:200% 100%;
+  color:#070B1A;
+  font-family:'Russo One',sans-serif;
+  font-size:1rem;
+  letter-spacing:0.5px;
+  padding:16px 28px;
+  border-radius:8px;
+  width:100%;max-width:420px;
+  box-shadow:0 6px 25px rgba(245,197,66,0.45);
+  transition:transform 0.2s,box-shadow 0.2s,background-position 0.5s;
+  animation:ctaPulse 2.5s ease-in-out infinite;
+  position:relative;
+  overflow:hidden;
+}
+.btn-cta::after{
+  content:'';
+  position:absolute;top:-50%;left:-60%;
+  width:40%;height:200%;
+  background:rgba(255,255,255,0.25);
+  transform:skewX(-20deg);
+  animation:btnShine 3.5s ease-in-out infinite;
+}
+@keyframes btnShine{
+  0%,100%{left:-60%}
+  50%{left:150%}
+}
+@keyframes ctaPulse{
+  0%,100%{box-shadow:0 6px 25px rgba(245,197,66,0.45)}
+  50%{box-shadow:0 8px 35px rgba(245,197,66,0.65),0 0 0 4px rgba(245,197,66,0.1)}
+}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(245,197,66,0.6)}
+.btn-cta img{width:20px;height:20px;object-fit:contain}
+.btn-cta-sm{max-width:100%}
+
+/* Social proof bar */
+.social-proof{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  font-size:0.8rem;color:#90A4AE;
+}
+.social-proof .sep{color:rgba(255,255,255,0.2)}
+.social-proof strong{color:#F5C542;font-weight:700}
+
+/* Hero right — video */
+.hero-right{position:relative}
+.hero-video-wrap{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(21,101,192,0.4),0 0 120px rgba(21,101,192,0.15);
+  border:1px solid rgba(21,101,192,0.35);
+}
+.hero-video-wrap::before{
+  content:'';
+  position:absolute;inset:-40px;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%, rgba(21,101,192,0.25) 0%, transparent 70%);
+  z-index:-1;
+  pointer-events:none;
+}
+.video-placeholder{
+  aspect-ratio:16/9;
+  background:linear-gradient(135deg,#0a1628 0%,#0d1f40 50%,#071228 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;color:#42A5F5;
+  position:relative;
+  cursor:pointer;
+}
+.video-placeholder::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(21,101,192,0.05) 0%,transparent 50%,rgba(245,197,66,0.03) 100%);
+}
+.play-btn{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(245,197,66,0.15);
+  border:2px solid rgba(245,197,66,0.5);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+  position:relative;z-index:1;
+}
+.play-btn:hover{background:rgba(245,197,66,0.25);border-color:#F5C542;transform:scale(1.1)}
+.play-btn svg{width:28px;height:28px;fill:#F5C542;margin-left:4px}
+.video-label{font-size:0.85rem;color:#90A4AE;position:relative;z-index:1;letter-spacing:1px;text-transform:uppercase}
+
+/* Hero glow orbs */
+.glow-orb{
+  position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;
+}
+.glow-orb-1{width:400px;height:400px;background:rgba(21,101,192,0.12);top:-100px;right:-100px}
+.glow-orb-2{width:300px;height:300px;background:rgba(245,197,66,0.06);bottom:-50px;left:-50px}
+
+/* ========================
+   URGENCY TICKER
+======================== */
+.ticker{
+  background:linear-gradient(90deg,rgba(21,101,192,0.25) 0%,rgba(21,101,192,0.35) 50%,rgba(21,101,192,0.25) 100%);
+  border-top:1px solid rgba(21,101,192,0.4);
+  border-bottom:1px solid rgba(21,101,192,0.4);
+  overflow:hidden;
+  padding:12px 0;
+  position:relative;z-index:10;
+}
+.ticker-inner{
+  display:flex;
+  white-space:nowrap;
+  animation:tickerScroll 30s linear infinite;
+}
+.ticker-inner:hover{animation-play-state:paused}
+.ticker-text{
+  flex-shrink:0;
+  padding:0 24px;
+  font-family:'Russo One',sans-serif;
+  font-size:0.82rem;
+  letter-spacing:1px;
+  color:#fff;
+  display:flex;align-items:center;gap:12px;
+}
+.ticker-sep{color:#1565C0;font-size:1rem}
+@keyframes tickerScroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* ========================
+   SECTION SHARED
+======================== */
+.section{
+  position:relative;z-index:5;
+  padding:80px 24px;
+}
+.section-inner{max-width:1280px;margin:0 auto;width:100%}
+.section-alt{background:#0F1733}
+.section-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(21,101,192,0.15);
+  border:1px solid rgba(21,101,192,0.45);
+  border-radius:20px;
+  padding:5px 14px;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#42A5F5;
+  margin-bottom:20px;
+}
+.section-title{
+  font-family:'Russo One',sans-serif;
+  font-size:clamp(1.5rem,3vw,2.4rem);
+  line-height:1.2;
+  margin-bottom:12px;
+}
+.section-sub{
+  font-size:1rem;color:#90A4AE;
+  line-height:1.6;
+  max-width:680px;
+  margin-bottom:40px;
+}
+
+/* ========================
+   BENEFITS SECTION
+======================== */
+.benefits-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+  margin-bottom:40px;
+}
+.benefit-card{
+  background:rgba(21,101,192,0.06);
+  border:1px solid rgba(21,101,192,0.2);
+  border-radius:var(--radius);
+  padding:24px;
+  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+  display:flex;gap:16px;
+  align-items:flex-start;
+}
+.benefit-card:hover{
+  border-color:rgba(21,101,192,0.5);
+  transform:translateY(-3px);
+  box-shadow:0 8px 30px rgba(21,101,192,0.15);
+}
+.benefit-icon{
+  font-size:1.6rem;flex-shrink:0;
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(21,101,192,0.15);
+  border-radius:8px;
+  border:1px solid rgba(21,101,192,0.3);
+}
+.benefit-content h3{
+  font-family:'Russo One',sans-serif;
+  font-size:0.92rem;
+  margin-bottom:6px;
+  color:#fff;
+}
+.benefit-content p{font-size:0.83rem;color:#90A4AE;line-height:1.5}
+.benefits-free{
+  text-align:center;
+  font-family:'Russo One',sans-serif;
+  font-size:1.1rem;
+  color:#F5C542;
+  margin-bottom:32px;
+  letter-spacing:1px;
+}
+
+/* ========================
+   THE LAST DANCE — CINEMATIC
+======================== */
+.lastdance-section{
+  position:relative;
+  overflow:hidden;
+  padding:100px 24px;
+  background:linear-gradient(180deg,#070B1A 0%,#0a1428 50%,#070B1A 100%);
+}
+.lastdance-section::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(21,101,192,0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(47,107,255,0.1) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+.lastdance-section::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(21,101,192,0.5),transparent);
+}
+.lastdance-inner{
+  position:relative;z-index:2;
+  max-width:860px;
+  margin:0 auto;
+  text-align:center;
+}
+.lastdance-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(21,101,192,0.2);
+  border:1px solid #1565C0;
+  border-radius:20px;
+  padding:6px 18px;
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#42A5F5;
+  margin-bottom:28px;
+  box-shadow:0 0 25px rgba(21,101,192,0.4),inset 0 0 10px rgba(21,101,192,0.1);
+  animation:badgeGlow 3s ease-in-out infinite;
+}
+@keyframes badgeGlow{
+  0%,100%{box-shadow:0 0 25px rgba(21,101,192,0.4),inset 0 0 10px rgba(21,101,192,0.1)}
+  50%{box-shadow:0 0 40px rgba(21,101,192,0.65),inset 0 0 20px rgba(21,101,192,0.2)}
+}
+.lastdance-title{
+  font-family:'Russo One',sans-serif;
+  font-size:clamp(1.6rem,4vw,2.8rem);
+  line-height:1.2;
+  margin-bottom:32px;
+  color:#fff;
+}
+.lastdance-title .blue{color:#42A5F5}
+.lastdance-body{
+  font-size:clamp(0.95rem,1.5vw,1.05rem);
+  color:#B0BEC5;
+  line-height:1.8;
+  margin-bottom:20px;
+  text-align:left;
+}
+.lastdance-body strong{color:#fff;font-weight:600}
+.lastdance-cta-wrap{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:16px}
+
+/* Cinematic lines */
+.cinematic-lines{
+  position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;
+}
+.cinematic-lines span{
+  position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 10%,rgba(21,101,192,0.15) 50%,transparent 90%);
+}
+.cinematic-lines span:nth-child(1){top:20%}
+.cinematic-lines span:nth-child(2){top:50%}
+.cinematic-lines span:nth-child(3){top:80%}
+
+/* ========================
+   TRUST SECTION
+======================== */
+.trust-stats{
+  display:flex;flex-wrap:wrap;gap:24px;
+  margin-bottom:40px;
+}
+.trust-stat{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(21,101,192,0.08);
+  border:1px solid rgba(21,101,192,0.2);
+  border-radius:10px;
+  padding:16px 20px;
+  flex:1;min-width:200px;
+}
+.trust-stat-icon{font-size:1.8rem}
+.trust-stat-text strong{
+  display:block;
+  font-family:'Russo One',sans-serif;
+  font-size:1.3rem;
+  color:#F5C542;
+}
+.trust-stat-text span{font-size:0.78rem;color:#90A4AE;letter-spacing:0.5px}
+
+.trust-celebs{
+  background:rgba(21,101,192,0.06);
+  border:1px solid rgba(21,101,192,0.2);
+  border-radius:var(--radius);
+  padding:24px 28px;
+  margin-bottom:40px;
+  display:flex;align-items:center;gap:20px;
+}
+.trust-celebs-icon{font-size:2rem;flex-shrink:0}
+.trust-celebs-text{font-size:0.9rem;color:#B0BEC5;line-height:1.6}
+.trust-celebs-text strong{color:#fff}
+
+.trustpilot-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;
+}
+.trustpilot-card{
+  background:rgba(15,23,51,0.8);
+  border:1px solid rgba(21,101,192,0.2);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.trustpilot-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(21,101,192,0.15)}
+.trustpilot-card img{width:100%;height:auto}
+
+/* ========================
+   HOW IT WORKS
+======================== */
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:24px;
+  margin-bottom:40px;
+}
+.step-card{
+  background:rgba(21,101,192,0.06);
+  border:1px solid rgba(21,101,192,0.2);
+  border-radius:var(--radius);
+  padding:32px 24px;
+  transition:border-color 0.3s,transform 0.3s;
+  position:relative;
+  overflow:hidden;
+}
+.step-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#1565C0,#42A5F5);
+  opacity:0;transition:opacity 0.3s;
+}
+.step-card:hover{border-color:rgba(21,101,192,0.5);transform:translateY(-3px)}
+.step-card:hover::before{opacity:1}
+.step-num{
+  font-family:'Russo One',sans-serif;
+  font-size:2.5rem;
+  color:rgba(21,101,192,0.25);
+  line-height:1;
+  margin-bottom:12px;
+}
+.step-icon{font-size:1.8rem;margin-bottom:12px}
+.step-title{
+  font-family:'Russo One',sans-serif;
+  font-size:1rem;
+  margin-bottom:10px;
+  color:#fff;
+}
+.step-title .blue{color:#42A5F5}
+.step-body{font-size:0.85rem;color:#90A4AE;line-height:1.65}
+
+/* ========================
+   FAQ ACCORDION
+======================== */
+.faq-list{max-width:820px;display:flex;flex-direction:column;gap:10px;margin-bottom:0}
+.faq-item{
+  background:rgba(15,23,51,0.8);
+  border:1px solid rgba(21,101,192,0.2);
+  border-radius:10px;
+  overflow:hidden;
+  transition:border-color 0.3s;
+}
+.faq-item.open{border-color:rgba(21,101,192,0.5)}
+.faq-question{
+  width:100%;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;
+  background:transparent;
+  color:#fff;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:0.95rem;
+  font-weight:600;
+  text-align:left;
+  gap:12px;
+  cursor:pointer;
+  transition:background 0.2s;
+  min-height:48px;
+}
+.faq-question:hover{background:rgba(21,101,192,0.08)}
+.faq-icon{
+  flex-shrink:0;
+  width:24px;height:24px;
+  border-radius:50%;
+  background:rgba(21,101,192,0.2);
+  border:1px solid rgba(21,101,192,0.4);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.3s,background 0.3s;
+  font-size:1rem;color:#42A5F5;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:rgba(21,101,192,0.4)}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.35s ease;
+}
+.faq-answer-inner{
+  padding:0 22px 20px;
+  font-size:0.88rem;color:#90A4AE;line-height:1.7;
+  border-top:1px solid rgba(21,101,192,0.12);
+  padding-top:16px;
+}
+.faq-answer-inner strong{color:#fff}
+
+/* ========================
+   CLOSING SECTION
+======================== */
+.closing-section{
+  position:relative;overflow:hidden;
+  padding:100px 24px;
+  background:linear-gradient(180deg,#0F1733 0%,#070B1A 100%);
+}
+.closing-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 100% 80% at 50% 50%, rgba(21,101,192,0.28) 0%, transparent 65%);
+  pointer-events:none;z-index:0;
+  animation:closingPulse 4s ease-in-out infinite;
+}
+@keyframes closingPulse{
+  0%,100%{opacity:0.8}
+  50%{opacity:1}
+}
+.closing-inner{
+  position:relative;z-index:2;
+  max-width:800px;margin:0 auto;
+  text-align:center;
+}
+.closing-title{
+  font-family:'Russo One',sans-serif;
+  font-size:clamp(1.6rem,4vw,2.6rem);
+  line-height:1.2;
+  margin-bottom:28px;
+  color:#fff;
+}
+.closing-title .gold{color:#F5C542}
+.closing-body{
+  font-size:clamp(0.9rem,1.5vw,1rem);
+  color:#B0BEC5;line-height:1.8;
+  margin-bottom:16px;
+  text-align:left;
+}
+.closing-body strong{color:#fff}
+.closing-cta-wrap{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:16px}
+
+/* ========================
+   FOOTER
+======================== */
+.footer{
+  background:#070B1A;
+  border-top:1px solid rgba(21,101,192,0.15);
+  padding:32px 24px;
+  text-align:center;
+}
+.footer-links{
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:8px 20px;
+  margin-bottom:16px;
+}
+.footer-links a{
+  font-size:0.8rem;color:#546E7A;
+  transition:color 0.2s;
+}
+.footer-links a:hover{color:#42A5F5}
+.footer-links .sep{color:rgba(255,255,255,0.1)}
+.footer-copy{font-size:0.78rem;color:#37474F}
+
+/* ========================
+   MODAL
+======================== */
+.modal-overlay{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(4,8,20,0.88);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.3s;
+}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-box{
+  background:#0F1733;
+  border:1px solid rgba(21,101,192,0.4);
+  border-radius:16px;
+  padding:36px 32px;
+  width:100%;max-width:440px;
+  position:relative;
+  box-shadow:0 0 60px rgba(21,101,192,0.3),0 0 120px rgba(21,101,192,0.1);
+  transform:translateY(20px);
+  transition:transform 0.3s;
+}
+.modal-overlay.active .modal-box{transform:translateY(0)}
+.modal-close{
+  position:absolute;top:14px;right:16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:50%;
+  width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;
+  color:#90A4AE;font-size:1rem;
+  cursor:pointer;transition:background 0.2s,color 0.2s;
+}
+.modal-close:hover{background:rgba(255,255,255,0.12);color:#fff}
+.modal-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(21,101,192,0.15);
+  border:1px solid rgba(21,101,192,0.4);
+  border-radius:15px;padding:4px 12px;
+  font-size:0.7rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:#42A5F5;
+  margin-bottom:14px;
+}
+.modal-title{
+  font-family:'Russo One',sans-serif;
+  font-size:1.3rem;line-height:1.25;
+  margin-bottom:8px;color:#fff;
+}
+.modal-sub{font-size:0.83rem;color:#90A4AE;margin-bottom:24px;line-height:1.5}
+.modal-sub strong{color:#F5C542}
+.form-group{margin-bottom:16px}
+.form-group label{
+  display:block;font-size:0.78rem;font-weight:600;
+  color:#90A4AE;margin-bottom:6px;letter-spacing:0.5px;
+  text-transform:uppercase;
+}
+.form-group input{
+  width:100%;padding:13px 16px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(21,101,192,0.25);
+  border-radius:8px;
+  color:#fff;font-family:'Chakra Petch',sans-serif;font-size:0.9rem;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  outline:none;
+}
+.form-group input:focus{
+  border-color:#1565C0;
+  box-shadow:0 0 0 3px rgba(21,101,192,0.15);
+}
+.form-group input::placeholder{color:#455A64}
+.btn-submit{
+  width:100%;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,#F5C542,#FFD76A,#F5C542);
+  background-size:200% 100%;
+  color:#070B1A;
+  font-family:'Russo One',sans-serif;
+  font-size:0.95rem;
+  padding:15px;border-radius:8px;
+  box-shadow:0 6px 25px rgba(245,197,66,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;
+  margin-top:8px;
+}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:0 8px 35px rgba(245,197,66,0.55)}
+.btn-submit img{width:20px;height:20px;object-fit:contain}
+.modal-privacy{
+  text-align:center;margin-top:14px;
+  font-size:0.72rem;color:#37474F;line-height:1.5;
+}
+.modal-privacy a{color:#546E7A;text-decoration:underline}
+
+/* ========================
+   SOCIAL PROOF TOAST
+======================== */
+.sp-toast{
+  position:fixed;
+  bottom:24px;left:20px;
+  z-index:8000;
+  background:rgba(15,23,51,0.96);
+  border:1px solid rgba(21,101,192,0.35);
+  border-radius:10px;
+  padding:12px 16px;
+  display:flex;align-items:center;gap:12px;
+  max-width:280px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
+  transform:translateX(-120%);
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events:none;
+}
+.sp-toast.show{transform:translateX(0)}
+.sp-avatar{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#1565C0,#42A5F5);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Russo One',sans-serif;font-size:0.85rem;color:#fff;
+}
+.sp-content{}
+.sp-name{font-size:0.8rem;font-weight:600;color:#fff;margin-bottom:2px}
+.sp-msg{font-size:0.72rem;color:#90A4AE}
+.sp-dot{color:#42A5F5;font-size:0.65rem}
+
+/* ========================
+   UTILITIES
+======================== */
+.text-center{text-align:center}
+.text-gold{color:#F5C542}
+.text-blue{color:#42A5F5}
+.mt-8{margin-top:8px}
+.mt-16{margin-top:16px}
+.mt-32{margin-top:32px}
+.mb-40{margin-bottom:40px}
+.flex-center{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* ========================
+   RESPONSIVE
+======================== */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:32px}
+  .hero-right{order:2}
+  .hero-left{order:1}
+  .btn-cta{max-width:100%}
+  .trust-celebs{flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .navbar{padding:0 16px;height:56px}
+  .navbar-logo img{height:28px}
+  .navbar-cta{font-size:0.72rem;padding:8px 13px}
+  .hero{padding:72px 16px 48px}
+  .hero-headline{font-size:1.65rem}
+  .section{padding:56px 16px}
+  .benefit-card{padding:18px}
+  .trust-stats{flex-direction:column}
+  .trust-stat{min-width:unset}
+  .steps-grid{grid-template-columns:1fr}
+  .modal-box{padding:28px 20px}
+  .sp-toast{left:12px;bottom:16px;max-width:240px}
+  .social-proof{font-size:0.72rem}
+  .section-title{font-size:1.5rem}
+  .lastdance-title{font-size:1.6rem}
+  .closing-title{font-size:1.6rem}
+}
+
+/* scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#070B1A}
+::-webkit-scrollbar-thumb{background:#1565C0;border-radius:3px}
+
+/* counter animation */
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.stat-counter{animation:countUp 0.6s ease forwards}
+</style>
+</head>
+<body>
+
+<!-- PARTICLES CANVAS -->
+<canvas id="particles"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Navegação principal">
+  <div class="navbar-inner">
+    <a href="#" class="navbar-logo" aria-label="FutShop">
+      <img src="assets/logo/futshop-logo-branco.webp" alt="FutShop" width="140" height="36"/>
+    </a>
+    <button class="navbar-cta open-modal" aria-label="Entrar na Comunidade VIP">
+      <img src="assets/logo/logo-whats.webp" alt="WhatsApp"/>
+      ENTRAR NA COMUNIDADE
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio" aria-label="Hero">
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="badge-top">
+        <img src="assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        ⭐ COMUNIDADE GRATUITA
+      </div>
+      <h1 class="hero-headline">
+        🏆 O TOTS CHEGOU. O <span class="gold">MAIOR DESCONTO DA HISTÓRIA</span> DA FUTSHOP TAMBÉM. E SÓ QUEM ESTÁ NO GRUPO <span class="blue">VAI TER ACESSO.</span>
+      </h1>
+      <p class="hero-sub">
+        A Semana do Craque voltou — <strong>The Last Dance</strong>. O cupom será liberado APENAS dentro da comunidade VIP. Essa é a última grande chance do FC 26.
+      </p>
+      <button class="btn-cta open-modal" aria-label="Entrar agora na comunidade">
+        <img src="assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        💬 ENTRAR AGORA NA COMUNIDADE!
+      </button>
+      <div class="social-proof">
+        <span>+<strong>40K</strong> Entregas</span>
+        <span class="sep">|</span>
+        <span><strong>0</strong> Banimentos</span>
+        <span class="sep">|</span>
+        <span>★★★★★ <strong>5.0</strong> Trustpilot</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-video-wrap">
+        <div class="video-placeholder" id="videoPlaceholder" role="region" aria-label="Vídeo do Bruxo — em breve">
+          <div class="play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <span class="video-label">Vídeo do Bruxo / Alejandro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY TICKER -->
+<div class="ticker" role="marquee" aria-label="Mensagens de urgência">
+  <div class="ticker-inner" aria-hidden="true">
+    <div class="ticker-text">
+      🔥 THE LAST DANCE — A SEMANA DO CRAQUE VOLTOU!
+      <span class="ticker-sep">◆</span>
+      ⚡ O CUPOM DIMINUI A CADA DIA — QUEM ENTRAR PRIMEIRO PAGA MENOS!
+      <span class="ticker-sep">◆</span>
+      🏆 CUPOM EXCLUSIVO NO GRUPO!
+      <span class="ticker-sep">◆</span>
+      ❌ QUEM NÃO ENTROU, FICA DE FORA!
+      <span class="ticker-sep">◆</span>
+      🔥 THE LAST DANCE — A SEMANA DO CRAQUE VOLTOU!
+      <span class="ticker-sep">◆</span>
+      ⚡ O CUPOM DIMINUI A CADA DIA — QUEM ENTRAR PRIMEIRO PAGA MENOS!
+      <span class="ticker-sep">◆</span>
+      🏆 CUPOM EXCLUSIVO NO GRUPO!
+      <span class="ticker-sep">◆</span>
+      ❌ QUEM NÃO ENTROU, FICA DE FORA!
+      <span class="ticker-sep">◆</span>
+    </div>
+    <div class="ticker-text" aria-hidden="true">
+      🔥 THE LAST DANCE — A SEMANA DO CRAQUE VOLTOU!
+      <span class="ticker-sep">◆</span>
+      ⚡ O CUPOM DIMINUI A CADA DIA — QUEM ENTRAR PRIMEIRO PAGA MENOS!
+      <span class="ticker-sep">◆</span>
+      🏆 CUPOM EXCLUSIVO NO GRUPO!
+      <span class="ticker-sep">◆</span>
+      ❌ QUEM NÃO ENTROU, FICA DE FORA!
+      <span class="ticker-sep">◆</span>
+      🔥 THE LAST DANCE — A SEMANA DO CRAQUE VOLTOU!
+      <span class="ticker-sep">◆</span>
+      ⚡ O CUPOM DIMINUI A CADA DIA — QUEM ENTRAR PRIMEIRO PAGA MENOS!
+      <span class="ticker-sep">◆</span>
+      🏆 CUPOM EXCLUSIVO NO GRUPO!
+      <span class="ticker-sep">◆</span>
+      ❌ QUEM NÃO ENTROU, FICA DE FORA!
+      <span class="ticker-sep">◆</span>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS SECTION -->
+<section class="section" id="beneficios" aria-labelledby="benefits-title">
+  <div class="section-inner">
+    <div class="section-badge">🏆 O QUE VOCÊ VAI RECEBER</div>
+    <h2 class="section-title" id="benefits-title">O que você vai receber:</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <div class="benefit-content">
+          <h3>Cupom exclusivo THE LAST DANCE</h3>
+          <p>liberado APENAS dentro do grupo VIP — o maior da história da Futshop</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎯</div>
+        <div class="benefit-content">
+          <h3>Acesso antecipado</h3>
+          <p>às melhores ofertas da Futshop antes de todo mundo</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📈</div>
+        <div class="benefit-content">
+          <h3>Análise de cartas TOTS META</h3>
+          <p>saiba quais jogadores TOTS valem a pena e quais são cilada</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">👥</div>
+        <div class="benefit-content">
+          <h3>Consultoria gratuita de montagem de elenco</h3>
+          <p>especialistas ajudam você a montar o time TOTS ideal pro seu orçamento</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎮</div>
+        <div class="benefit-content">
+          <h3>Guia de Táticas</h3>
+          <p>personalizadas para chegar no Rank 1 com os jogadores TOTS</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <div class="benefit-content">
+          <h3>Alertas em Tempo Real</h3>
+          <p>sobre promos, SBCs, quedas de preço e lançamentos TOTS</p>
+        </div>
+      </div>
+    </div>
+    <p class="benefits-free">Tudo isso de graça. Só por entrar.</p>
+    <div class="flex-center">
+      <button class="btn-cta btn-cta-sm open-modal" style="max-width:480px" aria-label="Entrar agora na comunidade">
+        <img src="assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        💬 ENTRAR AGORA NA COMUNIDADE!
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- THE LAST DANCE — CINEMATIC -->
+<section class="lastdance-section" id="the-last-dance" aria-labelledby="lastdance-title">
+  <div class="cinematic-lines"><span></span><span></span><span></span></div>
+  <div class="lastdance-inner">
+    <div class="lastdance-badge">THE LAST DANCE</div>
+    <h2 class="lastdance-title" id="lastdance-title">
+      O TOTS chegou. A Semana do Craque também.<br/>E essa é a <span class="blue">última dança</span> do FC 26.
+    </h2>
+    <p class="lastdance-body">
+      O TOTS é o <strong>último grande evento do EA FC 26</strong>. As cartas mais absurdas do jogo inteiro estão sendo lançadas agora. Depois disso, o FC 26 acaba e o FC 27 toma o lugar.
+    </p>
+    <p class="lastdance-body">
+      Essa é a <strong>última chance real de montar um time MONSTRUOSO</strong>. Com os melhores jogadores. Pelos menores preços. E com o maior desconto que a Futshop já fez na história.
+    </p>
+    <p class="lastdance-body">
+      A Futshop não espera a EA fazer evento. <strong>A Futshop cria o próprio momento</strong> — e compartilha com quem faz parte da comunidade.
+    </p>
+    <p class="lastdance-body">
+      É por isso que a Semana do Craque voltou. Maior. Mais forte. <strong>The Last Dance.</strong>
+    </p>
+    <p class="lastdance-body">
+      Entre no grupo. É gratuito. E quando o cupom for liberado, você será o primeiro a saber.
+    </p>
+    <div class="lastdance-cta-wrap">
+      <button class="btn-cta open-modal" style="max-width:460px" aria-label="Quero entrar na comunidade VIP">
+        <img src="assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        💬 QUERO ENTRAR NA COMUNIDADE VIP!
+      </button>
+      <div class="social-proof">
+        <span>+<strong>40K</strong> Entregas</span>
+        <span class="sep">|</span>
+        <span><strong>0</strong> Banimentos</span>
+        <span class="sep">|</span>
+        <span>★★★★★ <strong>5.0</strong> Trustpilot</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST & SAFETY -->
+<section class="section section-alt" id="confianca" aria-labelledby="trust-title">
+  <div class="section-inner">
+    <div class="section-badge">🔒 CONFIANÇA E SEGURANÇA</div>
+    <h2 class="section-title" id="trust-title">A Futshop tem mais de 40 mil entregas e zero banimentos.</h2>
+    <p class="section-sub">
+      Método automático exclusivo. Sem intervenção humana. Sem risco para sua conta. Até o <strong>Jailson</strong>, ex-goleiro do Palmeiras, e o <strong>Cazares</strong>, que jogou no Corinthians, compram na Futshop.
+    </p>
+    <div class="trust-stats">
+      <div class="trust-stat">
+        <div class="trust-stat-icon">📦</div>
+        <div class="trust-stat-text">
+          <strong class="stat-counter">+40.000</strong>
+          <span>Entregas realizadas</span>
+        </div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat-icon">🛡️</div>
+        <div class="trust-stat-text">
+          <strong class="stat-counter">0</strong>
+          <span>Banimentos em toda a história</span>
+        </div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat-icon">⭐</div>
+        <div class="trust-stat-text">
+          <strong class="stat-counter">5.0</strong>
+          <span>Estrelas no Trustpilot</span>
+        </div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat-icon">💬</div>
+        <div class="trust-stat-text">
+          <strong>24/7</strong>
+          <span>Suporte via WhatsApp</span>
+        </div>
+      </div>
+    </div>
+    <div class="trust-celebs">
+      <div class="trust-celebs-icon">⚽</div>
+      <div class="trust-celebs-text">
+        Jogadores profissionais como <strong>Jailson</strong> (ex-goleiro do Palmeiras) e <strong>Cazares</strong> (ex-Corinthians) confiam na Futshop. São mais de 40 mil entregas sem nenhum banimento — porque o nosso método é 100% automático e a EA não detecta.
+      </div>
+    </div>
+    <div class="trustpilot-grid">
+      <div class="trustpilot-card"><img src="assets/social-proof/trustpilot-1.webp" alt="Avaliação Trustpilot 1" loading="lazy"/></div>
+      <div class="trustpilot-card"><img src="assets/social-proof/trustpilot-2.webp" alt="Avaliação Trustpilot 2" loading="lazy"/></div>
+      <div class="trustpilot-card"><img src="assets/social-proof/trustpilot-3.webp" alt="Avaliação Trustpilot 3" loading="lazy"/></div>
+      <div class="trustpilot-card"><img src="assets/social-proof/trustpilot-4.webp" alt="Avaliação Trustpilot 4" loading="lazy"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="como-funciona" aria-labelledby="steps-title">
+  <div class="section-inner">
+    <div class="section-badge">🚀 COMO FUNCIONA</div>
+    <h2 class="section-title" id="steps-title">Simples assim. 3 passos para o maior desconto da história da Futshop.</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">📱</div>
+        <h3 class="step-title">ENTRE NO GRUPO VIP</h3>
+        <p class="step-body">Gratuito, sem compromisso. Você entra e já começa a receber conteúdo exclusivo: análise de cartas TOTS, dicas de mercado, guia de táticas e consultoria de montagem de elenco.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">🏆</div>
+        <h3 class="step-title">RECEBA O CUPOM <span class="blue">THE LAST DANCE</span></h3>
+        <p class="step-body">Quando a Semana do Craque começar, o cupom é liberado APENAS dentro do grupo. Quem não está, não recebe. E o cupom diminui a cada dia — quem entrar primeiro, paga menos.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">⚽</div>
+        <h3 class="step-title">SEJA O PRIMEIRO A SABER QUANDO O CUPOM CAIR</h3>
+        <p class="step-body">Quando as cartas TOTS forem lançadas, você recebe o cupom exclusivo dentro do grupo antes de todo mundo. É nesse momento que você aproveita o TOTS — o último grande evento do FC 26 — e monta o time MONSTRUOSO que vai encerrar sua temporada como lenda.</p>
+      </div>
+    </div>
+    <div class="flex-center">
+      <button class="btn-cta open-modal" style="max-width:520px" aria-label="Entrar no grupo VIP e garantir meu cupom">
+        <img src="assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        💬 ENTRAR NO GRUPO VIP E GARANTIR MEU CUPOM!
+      </button>
+    </div>
+    <div class="flex-center mt-16">
+      <div class="social-proof">
+        <span>+<strong>40K</strong> Entregas</span>
+        <span class="sep">|</span>
+        <span><strong>0</strong> Banimentos</span>
+        <span class="sep">|</span>
+        <span>★★★★★ <strong>5.0</strong> Trustpilot</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-alt" id="faq" aria-labelledby="faq-title">
+  <div class="section-inner">
+    <div class="section-badge">❓ DÚVIDAS FREQUENTES</div>
+    <h2 class="section-title" id="faq-title">Tire suas dúvidas</h2>
+    <div class="faq-list" role="list">
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
+          A comunidade é realmente gratuita?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq-1" role="region">
+          <div class="faq-answer-inner">
+            Sim. <strong>100% gratuita.</strong> Você entra, recebe conteúdo exclusivo, consultoria de montagem de elenco e o cupom The Last Dance sem pagar nada.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
+          Quando o cupom é liberado?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq-2" role="region">
+          <div class="faq-answer-inner">
+            O cupom será liberado dentro do grupo VIP quando a Semana do Craque começar. <strong>Quem estiver no grupo recebe primeiro.</strong> Quem não estiver, não recebe.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
+          Existe risco de ban ao comprar na Futshop?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq-3" role="region">
+          <div class="faq-answer-inner">
+            Zero. A Futshop usa um método <strong>100% automático</strong> que a EA não detecta. São mais de 40 mil entregas sem nenhum banimento. Até jogadores profissionais como o <strong>Jailson</strong> (Palmeiras) e o <strong>Cazares</strong> (Corinthians) compram na Futshop.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
+          Quanto tempo dura o desconto?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq-4" role="region">
+          <div class="faq-answer-inner">
+            O desconto é <strong>escalonado</strong> — começa no valor mais alto e vai diminuindo a cada dia. Quem entrar e comprar primeiro, paga menos. Quando acabar, acabou. Volta ao preço normal.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-5">
+          Posso parcelar?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq-5" role="region">
+          <div class="faq-answer-inner">
+            Sim! <strong>Parcelamos em até 12x.</strong> Para isso, é só chamar no WhatsApp da Futshop.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-6">
+          O que é The Last Dance?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq-6" role="region">
+          <div class="faq-answer-inner">
+            O TOTS é o <strong>último grande evento do EA FC 26</strong>. Depois dele, o jogo acaba. <strong>The Last Dance</strong> é a edição da Semana do Craque feita pra esse momento — a última chance de montar um time monstruoso com o maior desconto que a Futshop já fez.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing-section" id="fechamento" aria-labelledby="closing-title">
+  <div class="closing-inner">
+    <h2 class="closing-title" id="closing-title">
+      <span class="gold">The Last Dance</span> vai começar.<br/>Você vai estar dentro ou de fora?
+    </h2>
+    <p class="closing-body">
+      Enquanto você lê isso, outros já estão entrando no grupo. Quando o cupom cair — e ele vai cair — quem está dentro já vai saber. Vai estar com o desconto na mão, na hora que mais quer comprar coins, no exato momento em que as cartas TOTS são lançadas.
+    </p>
+    <p class="closing-body">
+      Quem estiver de fora vai ver o grupo movimentando, vai ver os outros montando time MONSTRUOSO, e vai comprar no preço cheio. Ou pior: vai perder a última grande chance do FC 26.
+    </p>
+    <p class="closing-body">
+      <strong>A comunidade é gratuita. Entrar não custa nada. Ficar de fora, custa.</strong>
+    </p>
+    <div class="closing-cta-wrap">
+      <button class="btn-cta open-modal" style="max-width:500px" aria-label="Entrar na comunidade VIP agora">
+        <img src="assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        💬 ENTRAR NA COMUNIDADE VIP AGORA
+      </button>
+      <div class="social-proof">
+        <span>+<strong>40K</strong> Entregas</span>
+        <span class="sep">|</span>
+        <span><strong>0</strong> Banimentos</span>
+        <span class="sep">|</span>
+        <span>★★★★★ <strong>5.0</strong> Trustpilot</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <nav class="footer-links" aria-label="Links do rodapé">
+    <a href="#">Políticas de privacidade</a>
+    <span class="sep" aria-hidden="true">|</span>
+    <a href="#">Termos de serviço</a>
+    <span class="sep" aria-hidden="true">|</span>
+    <a href="#">Contato</a>
+  </nav>
+  <p class="footer-copy">FutShop 2026 © Todos os Direitos Reservados</p>
+</footer>
+
+<!-- MODAL FORM -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Fechar">✕</button>
+    <div class="modal-badge">
+      <img src="assets/logo/logo-whats.webp" alt="" style="width:14px;height:14px;object-fit:contain"/>
+      COMUNIDADE VIP GRATUITA
+    </div>
+    <h3 class="modal-title" id="modal-title">Garanta seu acesso ao<br/>Grupo VIP The Last Dance</h3>
+    <p class="modal-sub">Preencha e receba o cupom <strong>THE LAST DANCE</strong> em primeira mão.</p>
+    <form id="lead-form" novalidate>
+      <div class="form-group">
+        <label for="field-name">Nome</label>
+        <input type="text" id="field-name" name="name" placeholder="Seu nome completo" autocomplete="name" required/>
+      </div>
+      <div class="form-group">
+        <label for="field-email">Email</label>
+        <input type="email" id="field-email" name="email" placeholder="seu@email.com" autocomplete="email" required/>
+      </div>
+      <div class="form-group">
+        <label for="field-whatsapp">WhatsApp</label>
+        <input type="tel" id="field-whatsapp" name="whatsapp" placeholder="(11) 99999-9999" autocomplete="tel" required/>
+      </div>
+      <button type="submit" class="btn-submit" aria-label="Entrar na comunidade VIP">
+        <img src="assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        💬 ENTRAR NA COMUNIDADE VIP
+      </button>
+    </form>
+    <p class="modal-privacy">
+      Ao continuar, você concorda com os <a href="#">Termos de Serviço</a> e <a href="#">Política de Privacidade</a>. Sem spam.
+    </p>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF TOAST -->
+<div class="sp-toast" id="sp-toast" role="status" aria-live="polite" aria-atomic="true">
+  <div class="sp-avatar" id="sp-avatar">M</div>
+  <div class="sp-content">
+    <div class="sp-name" id="sp-name">Marco Souza</div>
+    <div class="sp-msg">
+      <span class="sp-dot">●</span> acabou de garantir acesso ao grupo VIP da <strong>The Last Dance</strong>.
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ========================
+   PARTICLES
+======================== */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resizeCanvas(){
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas, {passive:true});
+
+class Particle{
+  constructor(){this.reset(true)}
+  reset(init){
+    this.x = Math.random()*W;
+    this.y = init ? Math.random()*H : H+10;
+    this.vx = (Math.random()-0.5)*0.3;
+    this.vy = -(Math.random()*0.4+0.1);
+    this.size = Math.random()*2+0.5;
+    this.life = 0;
+    this.maxLife = Math.random()*300+200;
+    const r = Math.random();
+    if(r<0.6){this.color='rgba(21,101,192,'}
+    else if(r<0.85){this.color='rgba(245,197,66,'}
+    else{this.color='rgba(66,165,245,'}
+  }
+  draw(){
+    const alpha = Math.sin((this.life/this.maxLife)*Math.PI)*0.6;
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle = this.color+alpha+')';
+    ctx.fill();
+    this.x+=this.vx; this.y+=this.vy;
+    this.life++;
+    if(this.life>=this.maxLife||this.y<-10){this.reset(false)}
+  }
+}
+
+for(let i=0;i<60;i++) particles.push(new Particle());
+
+function animParticles(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>p.draw());
+  requestAnimationFrame(animParticles);
+}
+
+// Respect reduced motion
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!prefersReduced) animParticles();
+
+/* ========================
+   MODAL
+======================== */
+const modal = document.getElementById('modal');
+const modalClose = document.getElementById('modal-close');
+const openBtns = document.querySelectorAll('.open-modal');
+const WA_LINK = '[LINK_PLACEHOLDER]'; // substitua pelo link do grupo
+
+function openModal(){
+  modal.classList.add('active');
+  document.body.style.overflow='hidden';
+  document.getElementById('field-name').focus();
+}
+function closeModal(){
+  modal.classList.remove('active');
+  document.body.style.overflow='';
+}
+
+openBtns.forEach(btn=>btn.addEventListener('click',openModal));
+modalClose.addEventListener('click',closeModal);
+modal.addEventListener('click',function(e){if(e.target===modal) closeModal()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape') closeModal()});
+
+const form = document.getElementById('lead-form');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  const name = document.getElementById('field-name').value.trim();
+  const email = document.getElementById('field-email').value.trim();
+  const wa = document.getElementById('field-whatsapp').value.trim();
+  if(!name||!email||!wa){return}
+  // Aqui você pode enviar os dados para seu backend/webhook
+  // fetch('/api/leads', {method:'POST', body:JSON.stringify({name,email,wa})})
+  closeModal();
+  window.location.href = WA_LINK;
+});
+
+/* ========================
+   FAQ ACCORDION
+======================== */
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item=>{
+  const btn = item.querySelector('.faq-question');
+  const answer = item.querySelector('.faq-answer');
+  btn.addEventListener('click',function(){
+    const isOpen = item.classList.contains('open');
+    // close all
+    faqItems.forEach(fi=>{
+      fi.classList.remove('open');
+      fi.querySelector('.faq-question').setAttribute('aria-expanded','false');
+      fi.querySelector('.faq-answer').style.maxHeight='0';
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+      answer.style.maxHeight = answer.scrollHeight+'px';
+    }
+  });
+});
+
+/* ========================
+   SOCIAL PROOF TOAST
+======================== */
+const names = [
+  'Gabriel Ferreira','Lucas Oliveira','Pedro Alves','Matheus Costa',
+  'João Silva','Felipe Souza','Rafael Santos','Bruno Rodrigues',
+  'Diego Lima','Thiago Mendes','Anderson Pereira','Rodrigo Nascimento',
+  'Carlos Eduardo','Victor Hugo','Leandro Carvalho','Alexandre Gomes',
+  'Ricardo Martins','Fernando Rocha','Gustavo Melo','Paulo Henrique',
+  'Renato Barbosa','Marcos Vinícius','Igor Pinheiro','Eduardo Cardoso',
+  'Daniel Moreira','Fábio Teixeira','Caio Azevedo','Vinícius Corrêa',
+  'Henrique Dias','Leonardo Araújo','Murilo Freitas','Otávio Ramos',
+  'Thales Batista','Wesley Monteiro','Yuri Castro','Adriano Fonseca',
+  'Bernardo Lopes','Cauê Miranda','Enzo Cavalcanti','Felipe Andrade'
+];
+
+const toast = document.getElementById('sp-toast');
+const spName = document.getElementById('sp-name');
+const spAvatar = document.getElementById('sp-avatar');
+let toastTimer = null;
+let toastActive = false;
+
+function showToast(){
+  if(toastActive) return;
+  const n = names[Math.floor(Math.random()*names.length)];
+  const initials = n.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+  spName.textContent = n;
+  spAvatar.textContent = initials;
+  toastActive = true;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{
+    toast.classList.remove('show');
+    toastActive = false;
+  }, 3500);
+}
+
+// Start after 3 seconds, then every 2 seconds
+setTimeout(()=>{
+  showToast();
+  setInterval(showToast, 2000);
+}, 3000);
+
+/* ========================
+   SMOOTH SCROLL
+======================== */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+/* ========================
+   NAVBAR SCROLL EFFECT
+======================== */
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll',function(){
+  navbar.style.background = window.scrollY>60
+    ? 'rgba(7,11,26,0.98)'
+    : 'rgba(7,11,26,0.92)';
+},{passive:true});
+
+/* ========================
+   WHATSAPP MASK
+======================== */
+const waInput = document.getElementById('field-whatsapp');
+waInput.addEventListener('input',function(){
+  let v = this.value.replace(/\D/g,'').substring(0,11);
+  if(v.length>2&&v.length<=7) v=`(${v.substring(0,2)}) ${v.substring(2)}`;
+  else if(v.length>7) v=`(${v.substring(0,2)}) ${v.substring(2,7)}-${v.substring(7)}`;
+  else if(v.length>0) v=`(${v}`;
+  this.value = v;
+});
+
+})();
+</script>
+</body>
+</html>
