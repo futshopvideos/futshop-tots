@@ -207,11 +207,20 @@ body::before{
 
 /* Social proof */
 .social-proof{
-  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-  font-size:0.78rem;color:#78909C;
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:nowrap;
+  font-size:0.78rem;color:#78909C;width:100%;
 }
-.social-proof .sep{color:rgba(255,255,255,0.15)}
-.social-proof strong{color:#F5C542;font-weight:700}
+.social-proof .sep{color:rgba(255,255,255,0.2);font-size:1rem}
+.sp-item{
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+  line-height:1.2;
+}
+.sp-val{
+  display:flex;align-items:center;gap:3px;
+  font-family:'Russo One',sans-serif;font-size:0.95rem;color:#F5C542;font-weight:700;
+}
+.sp-stars{color:#F5C542;font-size:0.8rem;letter-spacing:1px}
+.sp-label{font-size:0.6rem;color:#90A4AE;text-transform:uppercase;letter-spacing:0.8px;white-space:nowrap}
 
 /* Video wrapper */
 .hero-video-wrap{
@@ -776,7 +785,10 @@ html,body{overflow-x:hidden}
   .closing-title{font-size:1.4rem}
   .closing-body{font-size:0.87rem}
 
-  .social-proof{font-size:0.72rem;gap:9px}
+  .social-proof{gap:8px}
+  .sp-val{font-size:0.85rem}
+  .sp-label{font-size:0.55rem;letter-spacing:0.5px}
+  .sp-stars{font-size:0.72rem}
   .ticker-text{font-size:0.82rem;letter-spacing:1.5px;gap:10px}
   .ticker{padding:12px 0}
 
@@ -868,11 +880,20 @@ html,body{overflow-x:hidden}
         ENTRAR AGORA NA COMUNIDADE!
       </button>
       <div class="social-proof">
-        <span>+<strong>40K</strong> Entregas</span>
+        <span class="sp-item">
+          <span class="sp-val">+40K</span>
+          <span class="sp-label">Entregas</span>
+        </span>
         <span class="sep">|</span>
-        <span><strong>0</strong> Banimentos</span>
+        <span class="sp-item">
+          <span class="sp-val">0</span>
+          <span class="sp-label">Banimentos</span>
+        </span>
         <span class="sep">|</span>
-        <span>★★★★★ <strong>5.0</strong> Trustpilot</span>
+        <span class="sp-item">
+          <span class="sp-val"><span class="sp-stars">★★★★★</span> 5.0</span>
+          <span class="sp-label">Trustpilot</span>
+        </span>
       </div>
     </div>
 
@@ -1000,11 +1021,20 @@ html,body{overflow-x:hidden}
         QUERO ENTRAR NA COMUNIDADE VIP!
       </button>
       <div class="social-proof">
-        <span>+<strong>40K</strong> Entregas</span>
+        <span class="sp-item">
+          <span class="sp-val">+40K</span>
+          <span class="sp-label">Entregas</span>
+        </span>
         <span class="sep">|</span>
-        <span><strong>0</strong> Banimentos</span>
+        <span class="sp-item">
+          <span class="sp-val">0</span>
+          <span class="sp-label">Banimentos</span>
+        </span>
         <span class="sep">|</span>
-        <span>★★★★★ <strong>5.0</strong> Trustpilot</span>
+        <span class="sp-item">
+          <span class="sp-val"><span class="sp-stars">★★★★★</span> 5.0</span>
+          <span class="sp-label">Trustpilot</span>
+        </span>
       </div>
     </div>
   </div>
@@ -1080,11 +1110,20 @@ html,body{overflow-x:hidden}
     </div>
     <div class="flex-center mt-16">
       <div class="social-proof">
-        <span>+<strong>40K</strong> Entregas</span>
+        <span class="sp-item">
+          <span class="sp-val">+40K</span>
+          <span class="sp-label">Entregas</span>
+        </span>
         <span class="sep">|</span>
-        <span><strong>0</strong> Banimentos</span>
+        <span class="sp-item">
+          <span class="sp-val">0</span>
+          <span class="sp-label">Banimentos</span>
+        </span>
         <span class="sep">|</span>
-        <span>★★★★★ <strong>5.0</strong> Trustpilot</span>
+        <span class="sp-item">
+          <span class="sp-val"><span class="sp-stars">★★★★★</span> 5.0</span>
+          <span class="sp-label">Trustpilot</span>
+        </span>
       </div>
     </div>
   </div>
@@ -1170,11 +1209,20 @@ html,body{overflow-x:hidden}
         ENTRAR NA COMUNIDADE VIP AGORA
       </button>
       <div class="social-proof">
-        <span>+<strong>40K</strong> Entregas</span>
+        <span class="sp-item">
+          <span class="sp-val">+40K</span>
+          <span class="sp-label">Entregas</span>
+        </span>
         <span class="sep">|</span>
-        <span><strong>0</strong> Banimentos</span>
+        <span class="sp-item">
+          <span class="sp-val">0</span>
+          <span class="sp-label">Banimentos</span>
+        </span>
         <span class="sep">|</span>
-        <span>★★★★★ <strong>5.0</strong> Trustpilot</span>
+        <span class="sp-item">
+          <span class="sp-val"><span class="sp-stars">★★★★★</span> 5.0</span>
+          <span class="sp-label">Trustpilot</span>
+        </span>
       </div>
     </div>
   </div>
