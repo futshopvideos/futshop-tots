@@ -118,15 +118,25 @@ body::before{
   display:flex;align-items:center;
   overflow:hidden;
   min-height:100vh;
+  isolation:isolate;
   background:linear-gradient(180deg,#081428 0%,#0e1f42 45%,#0a1830 75%,#070B1A 100%);
 }
+/* Crystal image — cobre todo o hero */
 .hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('/tots-b/assets/cristais-tots.webp') no-repeat center center / cover;
+  opacity:0.6;
+  pointer-events:none;z-index:1;
+  animation:crystalAmbient 8s ease-in-out infinite;
+}
+/* Gradientes e vignette por cima dos cristais */
+.hero::after{
   content:'';position:absolute;inset:0;
   background:
     radial-gradient(ellipse 100% 70% at 50% 0%,rgba(21,101,192,0.55) 0%,transparent 55%),
-    radial-gradient(ellipse 70% 50% at 15% 65%,rgba(47,107,255,0.25) 0%,transparent 50%),
-    radial-gradient(ellipse 60% 60% at 88% 55%,rgba(21,101,192,0.3) 0%,transparent 50%),
-    radial-gradient(ellipse 40% 40% at 50% 90%,rgba(245,197,66,0.06) 0%,transparent 50%);
+    radial-gradient(ellipse 70% 50% at 15% 65%,rgba(47,107,255,0.2) 0%,transparent 50%),
+    radial-gradient(ellipse 60% 60% at 88% 55%,rgba(21,101,192,0.25) 0%,transparent 50%),
+    radial-gradient(ellipse at center,rgba(7,11,26,0) 0%,rgba(7,11,26,0.25) 50%,rgba(7,11,26,0.65) 100%);
   pointer-events:none;z-index:2;
 }
 .hero-inner{
@@ -140,7 +150,7 @@ body::before{
   align-items:start;
 }
 .hero-text{grid-area:text;display:flex;flex-direction:column;gap:18px}
-.hero-video-col{grid-area:video;align-self:center;position:relative;isolation:isolate}
+.hero-video-col{grid-area:video;align-self:center;position:relative}
 .hero-actions{grid-area:actions;display:flex;flex-direction:column;gap:16px}
 
 /* Badge */
@@ -241,67 +251,9 @@ body::before{
   border-radius:16px;
   background:linear-gradient(135deg,rgba(245,197,66,0.05) 0%,transparent 50%);
 }
-/* ============================================================
-   CRYSTAL HALO SYSTEM
-============================================================ */
-.hero-video-col::before{
-  content:'';
-  position:absolute;top:50%;left:50%;
-  width:160%;height:160%;
-  background:
-    radial-gradient(ellipse 55% 55% at center, rgba(21,101,192,0.4) 0%, rgba(21,101,192,0.12) 40%, transparent 70%),
-    conic-gradient(from 0deg,
-      transparent 0%,   rgba(66,165,245,0.07) 8%,  transparent 16%,
-      transparent 24%,  rgba(66,165,245,0.05) 32%,  transparent 40%,
-      transparent 48%,  rgba(21,101,192,0.07) 56%,  transparent 64%,
-      transparent 72%,  rgba(66,165,245,0.04) 80%,  transparent 88%,
-      transparent 100%);
-  animation:crystalAmbient 15s linear infinite;
-  pointer-events:none;z-index:0;
-}
-.crystal-halo{
-  position:absolute;top:50%;left:50%;
-  width:165%;aspect-ratio:179/100;
-  transform:translate(-50%,-50%) scale(1) rotate(0deg);
-  background:url('/tots-b/assets/cristais-tots.webp') no-repeat center/contain;
-  mix-blend-mode:screen;
-  filter:
-    drop-shadow(0 0 25px rgba(21,101,192,1))
-    drop-shadow(0 0 60px rgba(66,165,245,0.7))
-    drop-shadow(0 0 100px rgba(21,101,192,0.5))
-    drop-shadow(0 0 8px rgba(245,197,66,0.5));
-  animation:crystalFloat 6s ease-in-out infinite, crystalGlow 6s ease-in-out infinite;
-  z-index:4;pointer-events:none;will-change:transform,filter;
-}
-#crystal-dust{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  z-index:5;pointer-events:none;
-}
 @keyframes crystalAmbient{
-  0%   {opacity:0.6;transform:translate(-50%,-50%) rotate(0deg)   scale(1)}
-  25%  {opacity:0.85;transform:translate(-50%,-50%) rotate(90deg)  scale(1.06)}
-  50%  {opacity:1;  transform:translate(-50%,-50%) rotate(180deg) scale(1.12)}
-  75%  {opacity:0.85;transform:translate(-50%,-50%) rotate(270deg) scale(1.06)}
-  100% {opacity:0.6;transform:translate(-50%,-50%) rotate(360deg) scale(1)}
-}
-@keyframes crystalFloat{
-  0%,100%{transform:translate(-50%,-50%) scale(1)    rotate(0deg)}
-  25%    {transform:translate(-50%,-50%) scale(1.02)  rotate(0.5deg)}
-  50%    {transform:translate(-50%,-50%) scale(1.04)  rotate(0deg)}
-  75%    {transform:translate(-50%,-50%) scale(1.02)  rotate(-0.5deg)}
-}
-@keyframes crystalGlow{
-  0%,100%{filter:
-    drop-shadow(0 0 25px rgba(21,101,192,1))
-    drop-shadow(0 0 60px rgba(66,165,245,0.7))
-    drop-shadow(0 0 100px rgba(21,101,192,0.5))
-    drop-shadow(0 0 8px rgba(245,197,66,0.5))}
-  50%{filter:
-    drop-shadow(0 0 45px rgba(21,101,192,1))
-    drop-shadow(0 0 100px rgba(66,165,245,0.95))
-    drop-shadow(0 0 180px rgba(21,101,192,0.75))
-    drop-shadow(0 0 22px rgba(245,197,66,0.75))}
+  0%,100%{opacity:0.55;transform:scale(1) rotate(0deg)}
+  50%    {opacity:0.72;transform:scale(1.03) rotate(0.5deg)}
 }
 
 /* Glow orbs */
@@ -797,7 +749,6 @@ html,body{overflow-x:hidden}
   .hero{min-height:unset;padding:76px 20px 36px}
   /* Video max-height so CTA stays above fold on tablet */
   .hero-video-col{max-height:52vw;overflow:hidden}
-  .crystal-halo{width:120%}
   .hero-video-wrap{border-radius:10px}
   .glow-orb-1{width:400px;height:400px}
   .glow-orb-2{width:250px;height:250px}
@@ -809,6 +760,7 @@ html,body{overflow-x:hidden}
 
 /* ── 600px — Mobile médio (390px iPhone 14) ── */
 @media(max-width:600px){
+  .hero::before{opacity:0.45;background-size:160% auto}
   .navbar{padding:0 14px;height:54px}
   .navbar-logo img{height:26px}
   .navbar-cta{font-size:0.7rem;padding:7px 12px;letter-spacing:0}
@@ -820,7 +772,6 @@ html,body{overflow-x:hidden}
   .hero-sub{font-size:0.87rem;line-height:1.6}
   /* Video constrained so CTA is visible on 375px × 667px */
   .hero-video-col{max-height:205px;overflow:hidden}
-  .crystal-halo{width:105%}
   .hero-actions{gap:10px}
   .badge-top{font-size:0.72rem;padding:6px 12px}
   .btn-cta{max-width:100%;font-size:0.83rem;padding:12px 20px}
@@ -933,8 +884,6 @@ html,body{overflow-x:hidden}
 
     <!-- VIDEO block (desktop: col 2 rows 1–2 / mobile: 2nd) -->
     <div class="hero-video-col">
-      <div class="crystal-halo" aria-hidden="true"></div>
-      <canvas id="crystal-dust" aria-hidden="true"></canvas>
       <div class="hero-video-wrap">
         <vturb-smartplayer id="vid-69b842784601d16cb07075ac" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
       </div>
@@ -1579,79 +1528,6 @@ document.getElementById('field-whatsapp').addEventListener('input',function(){
   else if(v.length>0) v=`(${v}`;
   this.value=v;
 });
-
-/* ============================================================
-   CRYSTAL PARALLAX
-============================================================ */
-(function(){
-  const halo = document.querySelector('.crystal-halo');
-  if(!halo) return;
-  window.addEventListener('scroll',()=>{
-    halo.style.marginTop = (window.scrollY * 0.25) + 'px';
-  },{passive:true});
-})();
-
-/* ============================================================
-   CRYSTAL DUST PARTICLES
-============================================================ */
-(function(){
-  const canvas = document.getElementById('crystal-dust');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const COLORS = [
-    'rgba(66,165,245,',  // azul claro
-    'rgba(21,101,192,',  // azul escuro
-    'rgba(245,197,66,',  // dourado
-    'rgba(100,181,246,'  // azul céu
-  ];
-  const particles = [];
-
-  function resize(){
-    canvas.width  = canvas.parentElement.offsetWidth  || 400;
-    canvas.height = canvas.parentElement.offsetHeight || 280;
-  }
-
-  function spawn(){
-    return{
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 2.2 + 0.4,
-      maxAlpha: Math.random() * 0.75 + 0.2,
-      dy: -(Math.random() * 0.45 + 0.15),
-      dx: (Math.random() - 0.5) * 0.25,
-      life: 0,
-      maxLife: Math.floor(Math.random() * 130 + 60),
-      color: COLORS[Math.floor(Math.random() * COLORS.length)]
-    };
-  }
-
-  for(let i = 0; i < 48; i++){
-    const p = spawn();
-    p.life = Math.floor(Math.random() * p.maxLife);
-    particles.push(p);
-  }
-
-  function tick(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for(let i = 0; i < particles.length; i++){
-      const p = particles[i];
-      p.life++; p.x += p.dx; p.y += p.dy;
-      const alpha = p.maxAlpha * Math.sin((p.life / p.maxLife) * Math.PI);
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = p.color + '0.9)';
-      ctx.fillStyle   = p.color + alpha + ')';
-      ctx.fill();
-      if(p.life >= p.maxLife) particles[i] = spawn();
-    }
-    requestAnimationFrame(tick);
-  }
-
-  resize();
-  new ResizeObserver(resize).observe(canvas.parentElement);
-  tick();
-})();
 
 /* ============================================================
    SMOOTH SCROLL
