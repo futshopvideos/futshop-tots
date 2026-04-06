@@ -20,6 +20,7 @@ body{
   color:#fff;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
+  padding-bottom:52px; /* espaço para o ticker fixo no rodapé */
 }
 img{max-width:100%;height:auto;display:block}
 a{text-decoration:none;color:inherit}
@@ -247,8 +248,8 @@ body::before{
   border-bottom:2px solid rgba(245,197,66,0.5);
   overflow:hidden;
   padding:15px 0;
-  position:relative;z-index:10;
-  box-shadow:0 4px 30px rgba(21,101,192,0.6),0 -2px 20px rgba(21,101,192,0.3);
+  position:fixed;bottom:0;left:0;right:0;z-index:150;
+  box-shadow:0 -4px 30px rgba(21,101,192,0.6),0 -2px 20px rgba(21,101,192,0.3);
 }
 .ticker::before,.ticker::after{
   content:'';
@@ -672,7 +673,7 @@ body::before{
    SOCIAL PROOF TOAST
 ============================================================ */
 .sp-toast{
-  position:fixed;bottom:24px;left:20px;z-index:200;
+  position:fixed;bottom:62px;left:20px;z-index:200;
   background:rgba(12,20,46,0.96);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border:1px solid rgba(21,101,192,0.4);
@@ -781,7 +782,7 @@ html,body{overflow-x:hidden}
 
   .modal-box{padding:22px 16px}
   .modal-title{font-size:1.1rem}
-  .sp-toast{left:10px;bottom:14px;max-width:245px}
+  .sp-toast{left:10px;bottom:54px;max-width:245px}
   .sp-name{font-size:0.76rem}
   .sp-msg{font-size:0.67rem}
 }
