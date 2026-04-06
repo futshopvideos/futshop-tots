@@ -258,7 +258,7 @@ body::before{
 .ticker::after{right:0;background:linear-gradient(270deg,#0e4a99,transparent)}
 .ticker-inner{
   display:flex;white-space:nowrap;
-  animation:tickerScroll 25s linear infinite;
+  animation:tickerScroll 12s linear infinite;
 }
 .ticker-inner:hover{animation-play-state:paused}
 .ticker-text{
@@ -708,10 +708,10 @@ body::before{
    RESPONSIVE
 ============================================================ */
 
-/* Prevent horizontal overflow on ALL sizes */
-body{overflow-x:hidden}
-*{max-width:100%;word-break:break-word}
-img,video,iframe,vturb-smartplayer{max-width:100%;height:auto}
+/* Prevent horizontal overflow — targeted, NOT global * rule */
+html,body{overflow-x:hidden}
+/* Ticker MUST be wider than viewport — never constrain with max-width */
+.ticker,.ticker-inner,.ticker-text{max-width:none !important;white-space:nowrap}
 
 /* ── 768px — Tablet ── */
 @media(max-width:900px){
@@ -1421,12 +1421,20 @@ const spAvatar=document.getElementById('sp-avatar');
 let busy=false,tid=null;
 
 function ctaNearToast(){
-  /* returns true if any CTA button is visible in the bottom-left quadrant */
-  const toastRight = 20 + 290; /* left + max-width */
-  const toastTop   = window.innerHeight - 24 - 80; /* approx top of toast */
-  for(const btn of document.querySelectorAll('.btn-cta,.navbar-cta')){
-    const r = btn.getBoundingClientRect();
-    if(r.top < window.innerHeight && r.bottom > toastTop && r.left < toastRight) return true;
+  const toastH    = 80;  /* approx toast height */
+  const toastW    = 310; /* left(20) + max-width(290) */
+  const toastTop  = window.innerHeight - 24 - toastH;
+
+  /* Block if any CTA overlaps toast area */
+  for(const el of document.querySelectorAll('.btn-cta,.navbar-cta')){
+    const r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight && r.bottom > toastTop && r.left < toastW) return true;
+  }
+  /* Block if ticker is in the toast area (prevents overlap on first load) */
+  const ticker = document.querySelector('.ticker');
+  if(ticker){
+    const r = ticker.getBoundingClientRect();
+    if(r.top < window.innerHeight && r.bottom > toastTop) return true;
   }
   return false;
 }
