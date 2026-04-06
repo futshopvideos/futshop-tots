@@ -707,33 +707,110 @@ body::before{
 /* ============================================================
    RESPONSIVE
 ============================================================ */
+
+/* Prevent horizontal overflow on ALL sizes */
+body{overflow-x:hidden}
+*{max-width:100%;word-break:break-word}
+img,video,iframe,vturb-smartplayer{max-width:100%;height:auto}
+
+/* ── 768px — Tablet ── */
 @media(max-width:900px){
   .hero-inner{
     grid-template-columns:1fr;
-    grid-template-areas:"text" "actions" "video";
-    gap:16px;
+    /* ORDER: badge/headline/sub → VIDEO → CTA/social-proof */
+    grid-template-areas:"text" "video" "actions";
+    gap:14px;
   }
-  .hero{min-height:unset;padding:80px 16px 48px}
-  .hero-video-wrap{max-height:60vw;overflow:hidden}
+  .hero{min-height:unset;padding:76px 20px 36px}
+  /* Video max-height so CTA stays above fold on tablet */
+  .hero-video-col{max-height:52vw;overflow:hidden}
+  .hero-video-wrap{border-radius:10px}
+  .glow-orb-1{width:400px;height:400px}
+  .glow-orb-2{width:250px;height:250px}
   .glow-orb-3{display:none}
-  .trust-celebs{flex-direction:column;text-align:center}
+  .trust-celebs{flex-direction:column;text-align:center;gap:12px}
+  .benefits-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-headline{font-size:clamp(1.55rem,3.8vw,2.2rem)}
 }
+
+/* ── 600px — Mobile médio (390px iPhone 14) ── */
 @media(max-width:600px){
-  .navbar{padding:0 14px;height:56px}
-  .navbar-logo img{height:28px}
-  .navbar-cta{font-size:0.72rem;padding:8px 12px}
-  .hero{padding:72px 14px 40px}
-  .hero-headline{font-size:1.6rem}
-  .btn-cta{max-width:100%;font-size:0.9rem}
-  .section{padding:52px 14px}
-  .trust-stats{flex-direction:column}
-  .trust-stat{min-width:unset}
-  .modal-box{padding:24px 18px}
-  .sp-toast{left:12px;bottom:16px;max-width:250px}
-  .section-title{font-size:1.45rem}
-  .lastdance-title{font-size:1.5rem}
-  .closing-title{font-size:1.5rem}
+  .navbar{padding:0 14px;height:54px}
+  .navbar-logo img{height:26px}
+  .navbar-cta{font-size:0.7rem;padding:7px 12px;letter-spacing:0}
+
+  .hero{padding:64px 14px 28px}
+  .hero-inner{gap:11px}
+  .hero-text{gap:11px}
+  .hero-headline{font-size:1.48rem;line-height:1.18}
+  .hero-sub{font-size:0.87rem;line-height:1.6}
+  /* Video constrained so CTA is visible on 375px × 667px */
+  .hero-video-col{max-height:205px;overflow:hidden}
+  .hero-actions{gap:10px}
+  .badge-top{font-size:0.72rem;padding:6px 12px}
+  .btn-cta{max-width:100%;font-size:0.83rem;padding:12px 20px}
+
+  .section{padding:48px 14px}
+  .section-title{font-size:1.35rem}
+  .section-badge{font-size:0.67rem;padding:4px 11px}
+  .section-sub{font-size:0.9rem}
+
+  .benefits-grid{grid-template-columns:1fr;gap:12px}
+  .benefit-card{padding:18px 16px}
+  .benefit-icon{width:40px;height:40px;font-size:1.3rem}
+
+  .trust-stats{flex-direction:column;gap:10px}
+  .trust-stat{flex:unset;width:100%;min-width:0;padding:14px 18px}
+  .trust-celebs{padding:18px 16px}
+
+  .trustpilot-grid{grid-template-columns:1fr}
   .steps-grid{grid-template-columns:1fr}
+  .step-card{padding:24px 20px}
+
+  .lastdance-section{padding:64px 14px}
+  .lastdance-title{font-size:1.4rem}
+  .lastdance-body{font-size:0.87rem}
+
+  .closing-section{padding:64px 14px}
+  .closing-title{font-size:1.4rem}
+  .closing-body{font-size:0.87rem}
+
+  .social-proof{font-size:0.72rem;gap:9px}
+  .ticker-text{font-size:0.82rem;letter-spacing:1.5px;gap:10px}
+  .ticker{padding:12px 0}
+
+  .modal-box{padding:22px 16px}
+  .modal-title{font-size:1.1rem}
+  .sp-toast{left:10px;bottom:14px;max-width:245px}
+  .sp-name{font-size:0.76rem}
+  .sp-msg{font-size:0.67rem}
+}
+
+/* ── 380px — Mobile pequeno (iPhone SE 375px) ── */
+@media(max-width:380px){
+  .hero{padding:60px 12px 24px}
+  .hero-inner{gap:10px}
+  .hero-text{gap:10px}
+  .hero-headline{font-size:1.3rem}
+  .hero-sub{font-size:0.82rem}
+  /* Video more constrained on iPhone SE (667px tall) */
+  .hero-video-col{max-height:185px}
+  .btn-cta{font-size:0.78rem;padding:11px 16px}
+  .navbar-cta{font-size:0.65rem;padding:6px 10px}
+  .section-title{font-size:1.2rem}
+  .lastdance-title{font-size:1.25rem}
+  .closing-title{font-size:1.25rem}
+  .sp-toast{max-width:220px}
+}
+
+/* ── 1440px — Large desktop ── */
+@media(min-width:1440px){
+  .hero{padding:100px 40px 72px}
+  .hero-inner{gap:24px 64px}
+  .hero-headline{font-size:3.2rem}
+  .section{padding:96px 40px}
+  .lastdance-section{padding:120px 40px}
+  .closing-section{padding:120px 40px}
 }
 </style>
 </head>
