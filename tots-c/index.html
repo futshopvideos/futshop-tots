@@ -262,12 +262,35 @@ body::before{
   display:flex;
   justify-content:center;
   align-items:flex-end;
-  /* Máscara elíptica orgânica — NUNCA retangular, dissolve nas bordas como cinema */
-  -webkit-mask-image:radial-gradient(ellipse 90% 88% at 50% 44%,black 40%,rgba(0,0,0,0.7) 62%,transparent 100%);
-  mask-image:radial-gradient(ellipse 90% 88% at 50% 44%,black 40%,rgba(0,0,0,0.7) 62%,transparent 100%);
+  isolation:isolate;
+  /* SEM background, SEM backdrop-filter, SEM border, SEM box-shadow */
+}
+/* Glow elíptico por trás do time via pseudo — NUNCA retangular.
+   A imagem pode não ter canal alpha, então o drop-shadow na img
+   criaria um halo RETANGULAR. Todo glow vem daqui, em forma de ELIPSE. */
+.team-tots-wrap::before{
+  content:'';
+  position:absolute;
+  top:55%;left:50%;
+  transform:translate(-50%,-50%);
+  width:88%;height:58%;
+  background:radial-gradient(ellipse at center,
+    rgba(21,101,192,0.55) 0%,
+    rgba(66,165,245,0.28) 35%,
+    rgba(245,197,66,0.08) 60%,
+    transparent 75%);
+  filter:blur(42px);
+  z-index:-1;
+  pointer-events:none;
+  animation:stageGlow 5s ease-in-out infinite;
+}
+/* Dissolve a imagem em fade elíptico nas bordas — elimina bordas duras */
+.team-tots-wrap::after{
+  content:none; /* sem overlay retangular */
 }
 .team-tots-img{
   display:block;
+  position:relative;z-index:1;
   /* Mobile: max 35vh — garante que navbar+headline+sub+time+CTA+prova caibam em 100vh */
   height:clamp(185px,35vh,300px);
   width:auto;
@@ -276,13 +299,14 @@ body::before{
   animation:
     teamEntry 0.95s cubic-bezier(0.22,1,0.36,1) both,
     teamFloat 7s ease-in-out infinite 1.1s;
-  /* Glow: azul TOTS + ciano + dourado sutil + sombra profunda
-     Puramente via drop-shadow — sem container retangular */
+  /* Apenas sombra densa embaixo — o glow azul/dourado vem do ::before elíptico
+     drop-shadow AQUI criaria halo RETANGULAR se a imagem não tiver alpha */
   filter:
-    drop-shadow(0 0 40px rgba(21,101,192,0.95))
-    drop-shadow(0 0 80px rgba(66,165,245,0.58))
-    drop-shadow(0 0 16px rgba(245,197,66,0.24))
-    drop-shadow(0 28px 55px rgba(0,0,0,0.9));
+    drop-shadow(0 22px 44px rgba(0,0,0,0.92))
+    drop-shadow(0 0 8px rgba(21,101,192,0.35));
+  /* Fade elíptico na própria imagem — dissolve bordas sem retângulo visível */
+  -webkit-mask-image:radial-gradient(ellipse 88% 90% at 50% 46%,black 38%,rgba(0,0,0,0.72) 60%,transparent 100%);
+  mask-image:radial-gradient(ellipse 88% 90% at 50% 46%,black 38%,rgba(0,0,0,0.72) 60%,transparent 100%);
   will-change:transform;
   transform-origin:center bottom;
 }
@@ -294,15 +318,13 @@ body::before{
     max-width:min(44vw,480px);
   }
 }
-/* Hover desktop — pulsa o glow */
+/* Hover desktop — intensifica a sombra embaixo (glow azul fica no ::before) */
 @media(hover:hover){
   .team-tots-img{transition:filter 0.55s ease}
   .team-tots-img:hover{
     filter:
-      drop-shadow(0 0 58px rgba(21,101,192,1))
-      drop-shadow(0 0 115px rgba(66,165,245,0.75))
-      drop-shadow(0 0 24px rgba(245,197,66,0.36))
-      drop-shadow(0 28px 55px rgba(0,0,0,0.9));
+      drop-shadow(0 28px 55px rgba(0,0,0,0.95))
+      drop-shadow(0 0 12px rgba(21,101,192,0.5));
   }
 }
 @keyframes teamEntry{
@@ -460,16 +482,16 @@ body::before{
   padding:15px 0;
   position:fixed;bottom:0;left:0;right:0;z-index:150;
   box-shadow:0 -4px 30px rgba(21,101,192,0.6),0 -2px 20px rgba(21,101,192,0.3);
+  /* mask-image em vez de ::before/::after — mais robusto em iOS Safari onde
+     overflow:hidden em position:fixed pode falhar e mostrar texto cortado */
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 5%,black 95%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,black 5%,black 95%,transparent 100%);
 }
-.ticker::before,.ticker::after{
-  content:'';
-  position:absolute;top:0;bottom:0;width:80px;z-index:2;
-}
-.ticker::before{left:0;background:linear-gradient(90deg,#0e4a99,transparent)}
-.ticker::after{right:0;background:linear-gradient(270deg,#0e4a99,transparent)}
+/* ::before e ::after removidos — mask-image cobre os fades laterais */
 .ticker-inner{
   display:flex;white-space:nowrap;
-  animation:tickerScroll 8s linear infinite;
+  /* Velocidade levemente mais lenta — legível em mobile sem parecer "cortado" */
+  animation:tickerScroll 14s linear infinite;
 }
 .ticker-inner:hover{animation-play-state:paused}
 .ticker-text{
@@ -1821,6 +1843,18 @@ const spName=document.getElementById('sp-name');
 const spAvatar=document.getElementById('sp-avatar');
 let busy=false,tid=null;
 
+/* Bloqueia notificação enquanto o hero estiver visível (> 50% na viewport)
+   para não cobrir o "+40K ENTREGAS" e o CTA principal da primeira dobra */
+let heroInView=true;
+const heroSection=document.getElementById('inicio');
+if('IntersectionObserver' in window && heroSection){
+  const heroObs=new IntersectionObserver(
+    (entries)=>{ heroInView=entries[0].intersectionRatio > 0.45; },
+    { threshold:[0,0.45,1] }
+  );
+  heroObs.observe(heroSection);
+}
+
 function ctaNearToast(){
   const toastH    = 80;  /* approx toast height */
   const toastW    = 310; /* left(20) + max-width(290) */
@@ -1835,7 +1869,7 @@ function ctaNearToast(){
 }
 
 function showToast(){
-  if(busy||ctaNearToast()) return;
+  if(busy||heroInView||ctaNearToast()) return;
   const n=names[Math.floor(Math.random()*names.length)];
   spName.textContent=n;
   spAvatar.textContent=n.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
