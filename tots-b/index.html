@@ -122,14 +122,21 @@ body::before{
   background:linear-gradient(180deg,#081428 0%,#0e1f42 45%,#0a1830 75%,#070B1A 100%);
 }
 /* Cristal único — 130% escalado, mix-blend screen, animação sutil */
+/* Dois layers: anel no canto superior-esquerdo + inferior-direito
+   Centro transparente do anel = conteúdo visível sem bloqueio */
 .hero::before{
   content:'';
-  position:absolute;top:50%;left:50%;
-  width:130%;height:130%;
-  background:url('/tots-b/assets/cristais-tots.webp') no-repeat center/cover;
-  opacity:0.5;
+  position:absolute;inset:0;
+  background-image:
+    url('/tots-b/assets/cristais-tots.webp'),
+    url('/tots-b/assets/cristais-tots.webp');
+  background-repeat:no-repeat,no-repeat;
+  /* Desktop: 68% → anel 816×456px em cantos opostos, 25% off-screen cada */
+  background-size:68% auto, 68% auto;
+  background-position:-6% -5%, 106% 105%;
+  opacity:0.72;
   mix-blend-mode:screen;
-  filter:blur(0.5px) drop-shadow(0 0 80px rgba(21,101,192,0.6)) drop-shadow(0 0 160px rgba(66,165,245,0.4));
+  filter:drop-shadow(0 0 45px rgba(21,101,192,0.75)) drop-shadow(0 0 90px rgba(66,165,245,0.45));
   pointer-events:none;z-index:1;
   animation:crystalAmbient 12s ease-in-out infinite;
 }
@@ -144,9 +151,8 @@ body::before{
   animation:lightShift 10s ease-in-out infinite;
 }
 @keyframes crystalAmbient{
-  0%,100%{opacity:0.45;transform:translate(-50%,-50%) scale(1) rotate(0deg)}
-  33%    {opacity:0.55;transform:translate(-50%,-52%) scale(1.02) rotate(0.5deg)}
-  66%    {opacity:0.5; transform:translate(-52%,-50%) scale(1.04) rotate(-0.3deg)}
+  0%,100%{transform:translateY(0) scale(1);opacity:0.72}
+  50%    {transform:translateY(-7px) scale(1.012);opacity:0.82}
 }
 @keyframes lightShift{
   0%,100%{opacity:1}
@@ -749,6 +755,12 @@ html,body{overflow-x:hidden}
 
 /* ── 768px — Tablet ── */
 @media(max-width:900px){
+  /* Tablet: anéis maiores proporcionalmente — 85% → ~765px cada */
+  .hero::before{
+    background-size:85% auto, 85% auto;
+    background-position:-6% -5%, 106% 105%;
+    opacity:0.65;
+  }
   .hero-inner{
     grid-template-columns:1fr;
     /* ORDER: badge/headline/sub → VIDEO → CTA/social-proof */
@@ -769,7 +781,13 @@ html,body{overflow-x:hidden}
 
 /* ── 600px — Mobile médio (390px iPhone 14) ── */
 @media(max-width:600px){
-  .hero::before{width:200%;height:200%;opacity:0.4;filter:blur(1px) drop-shadow(0 0 60px rgba(21,101,192,0.5))}
+  /* Mobile (≤600px): anéis centralizados topo e rodapé, 140% → 525px cada */
+  .hero::before{
+    background-size:140% auto, 140% auto;
+    background-position:center -6%, center 106%;
+    opacity:0.62;
+    filter:drop-shadow(0 0 35px rgba(21,101,192,0.7)) drop-shadow(0 0 70px rgba(66,165,245,0.4));
+  }
   .navbar{padding:0 14px;height:54px}
   .navbar-logo img{height:26px}
   .navbar-cta{font-size:0.7rem;padding:7px 12px;letter-spacing:0}
@@ -826,6 +844,11 @@ html,body{overflow-x:hidden}
 
 /* ── 380px — Mobile pequeno (iPhone SE 375px) ── */
 @media(max-width:380px){
+  /* iPhone SE — anéis um pouco maiores, opacidade ligeiramente menor */
+  .hero::before{
+    background-size:160% auto, 160% auto;
+    opacity:0.55;
+  }
   .hero{padding:60px 12px 24px}
   .hero-inner{gap:10px}
   .hero-text{gap:10px}
