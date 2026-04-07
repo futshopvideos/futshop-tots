@@ -298,13 +298,17 @@ body::before{
   font-size:clamp(1.85rem,3.7vw,3.15rem);
   line-height:1.15;color:#fff;
   letter-spacing:0.5px;
-  /* Neon edge tight + halo azul profundo + black drop */
+  /* GPU layer própria: compositor resolve filter fora da main thread → LCP mais rápido */
+  will-change:transform;
+  contain:layout;
+  /* Neon edge tight + halo azul profundo + black drop
+     (3ª camada: 220px→80px — imperceptível a 0.2 opacity, muito mais leve pra rasterizar) */
   text-shadow:
     0 0 2px rgba(255,255,255,0.75),
     0 0 16px rgba(255,255,255,0.22),
     0 0 60px rgba(21,101,192,0.75),
-    0 0 130px rgba(21,101,192,0.42),
-    0 0 220px rgba(21,101,192,0.2),
+    0 0 55px rgba(21,101,192,0.42),
+    0 0 80px rgba(21,101,192,0.2),
     0 2px 18px rgba(0,0,0,0.88);
   /* drop-shadow = bloom ao redor do bloco inteiro de texto */
   filter:
