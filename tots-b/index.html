@@ -7,7 +7,7 @@
 <meta name="description" content="O TOTS chegou. O maior desconto da história da Futshop também. Só quem está no grupo vai ter acesso."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="preconnect" href="https://scripts.converteai.net"/>
+<link rel="preconnect" href="https://scripts.converteai.net" crossorigin/>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=optional"/>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=optional" rel="stylesheet"/>
 <link rel="preload" as="image" href="/tots-b/assets/cristais-tots.webp" fetchpriority="high"/>
@@ -189,12 +189,18 @@ body::before{
   font-size:0.78rem;font-weight:700;letter-spacing:1.5px;
   text-transform:uppercase;color:#42A5F5;
   box-shadow:0 0 25px rgba(21,101,192,0.35),inset 0 0 12px rgba(21,101,192,0.08);
-  animation:badgePulse 3s ease-in-out infinite;
+  position:relative;isolation:isolate;
+}
+.badge-top::before{
+  content:'';position:absolute;inset:-4px;
+  background:inherit;border-radius:inherit;
+  z-index:-1;filter:blur(15px);opacity:0.5;
+  animation:badgeGlow 3s ease-in-out infinite;
 }
 .badge-top img{width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1)}
-@keyframes badgePulse{
-  0%,100%{box-shadow:0 0 25px rgba(21,101,192,0.35),0 0 0 0 rgba(21,101,192,0.1)}
-  50%{box-shadow:0 0 40px rgba(21,101,192,0.6),0 0 0 8px rgba(21,101,192,0.04)}
+@keyframes badgeGlow{
+  0%,100%{opacity:0.5;transform:scale(1)}
+  50%{opacity:0.9;transform:scale(1.05)}
 }
 
 /* Headline */
@@ -442,12 +448,14 @@ body::before{
   padding:7px 20px;font-size:0.72rem;font-weight:700;
   letter-spacing:4px;text-transform:uppercase;color:#42A5F5;
   margin-bottom:28px;
-  box-shadow:0 0 30px rgba(21,101,192,0.5),0 0 60px rgba(21,101,192,0.2),inset 0 0 15px rgba(21,101,192,0.12);
-  animation:ldBadge 3s ease-in-out infinite;
+  box-shadow:0 0 30px rgba(21,101,192,0.5),inset 0 0 15px rgba(21,101,192,0.12);
+  position:relative;isolation:isolate;
 }
-@keyframes ldBadge{
-  0%,100%{box-shadow:0 0 30px rgba(21,101,192,0.5),0 0 60px rgba(21,101,192,0.2),inset 0 0 15px rgba(21,101,192,0.12)}
-  50%{box-shadow:0 0 50px rgba(21,101,192,0.75),0 0 100px rgba(21,101,192,0.3),inset 0 0 25px rgba(21,101,192,0.2)}
+.lastdance-badge::before{
+  content:'';position:absolute;inset:-4px;
+  background:inherit;border-radius:inherit;
+  z-index:-1;filter:blur(15px);opacity:0.5;
+  animation:badgeGlow 3s ease-in-out infinite;
 }
 .lastdance-title{
   font-family:'Russo One',sans-serif;
