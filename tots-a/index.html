@@ -295,39 +295,24 @@ body::before{
 /* Headline */
 .hero-headline{
   font-family:'Russo One',sans-serif;
-  font-size:clamp(1.95rem,3.9vw,3.35rem);
-  line-height:1.15;
-  letter-spacing:1px;
-  /* Gradiente ice/chrome top-lit — letras brancas com brilho azul-gelo */
-  background:linear-gradient(175deg,#ffffff 0%,#e0f0ff 50%,#b8d9ff 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  color:transparent;
-  /* Borda sutil pra definição máxima */
-  -webkit-text-stroke:0.5px rgba(190,225,255,0.3);
-  /* Halo azul profundo + bloom + drop */
+  font-size:clamp(1.85rem,3.7vw,3.15rem);
+  line-height:1.15;color:#fff;
+  letter-spacing:0.5px;
+  /* Neon edge tight + halo azul profundo + black drop */
   text-shadow:
-    0 0 80px rgba(21,101,192,0.9),
-    0 0 160px rgba(21,101,192,0.5),
-    0 0 260px rgba(66,165,245,0.28),
-    0 3px 20px rgba(0,0,0,0.95),
-    0 0 14px rgba(255,255,255,0.14);
+    0 0 2px rgba(255,255,255,0.75),
+    0 0 16px rgba(255,255,255,0.22),
+    0 0 60px rgba(21,101,192,0.75),
+    0 0 130px rgba(21,101,192,0.42),
+    0 0 220px rgba(21,101,192,0.2),
+    0 2px 18px rgba(0,0,0,0.88);
+  /* drop-shadow = bloom ao redor do bloco inteiro de texto */
+  filter:
+    drop-shadow(0 0 14px rgba(21,101,192,0.7))
+    drop-shadow(0 0 30px rgba(21,101,192,0.32));
 }
-.hero-headline .gold{
-  background:linear-gradient(175deg,#ffe980 0%,#F5C542 55%,#c97e00 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  text-shadow:0 0 45px rgba(245,197,66,0.9),0 0 90px rgba(245,197,66,0.5),0 0 160px rgba(245,197,66,0.25);
-}
-.hero-headline .blue{
-  background:linear-gradient(175deg,#b8e0ff 0%,#42A5F5 55%,#1054a8 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  text-shadow:0 0 45px rgba(66,165,245,0.9),0 0 90px rgba(66,165,245,0.5),0 0 160px rgba(66,165,245,0.25);
-}
+.hero-headline .gold{color:#F5C542;text-shadow:0 0 2px rgba(255,224,100,0.9),0 0 22px rgba(245,197,66,0.8),0 0 60px rgba(245,197,66,0.45),0 0 120px rgba(245,197,66,0.22)}
+.hero-headline .blue{color:#42A5F5;text-shadow:0 0 2px rgba(160,215,255,0.9),0 0 22px rgba(66,165,245,0.8),0 0 60px rgba(66,165,245,0.45),0 0 120px rgba(66,165,245,0.22)}
 
 /* Subheadline */
 .hero-sub{
