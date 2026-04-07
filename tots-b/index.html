@@ -134,11 +134,14 @@ body::before{
   /* Desktop: 68% → anel 816×456px em cantos opostos, 25% off-screen cada */
   background-size:68% auto, 68% auto;
   background-position:-6% -5%, 106% 105%;
-  opacity:0.72;
+  opacity:0.36;
   mix-blend-mode:screen;
   filter:drop-shadow(0 0 45px rgba(21,101,192,0.75)) drop-shadow(0 0 90px rgba(66,165,245,0.45));
+  /* Dissolve no bottom — só o layer de cristais, conteúdo não é afetado */
+  -webkit-mask-image:linear-gradient(to bottom,black 0%,black 72%,transparent 100%);
+  mask-image:linear-gradient(to bottom,black 0%,black 72%,transparent 100%);
   pointer-events:none;z-index:1;
-  animation:crystalAmbient 12s ease-in-out infinite;
+  animation:crystalAmbient 8s ease-in-out infinite;
 }
 /* Gradientes atmosféricos + vignette por cima dos cristais */
 .hero::after{
@@ -148,11 +151,11 @@ body::before{
     radial-gradient(ellipse at 70% 60%,rgba(66,165,245,0.2) 0%,transparent 50%),
     radial-gradient(ellipse at center,rgba(7,11,26,0.4) 0%,rgba(7,11,26,0.6) 80%,rgba(7,11,26,0.85) 100%);
   pointer-events:none;z-index:2;
-  animation:lightShift 10s ease-in-out infinite;
+  animation:lightShift 6.7s ease-in-out infinite;
 }
 @keyframes crystalAmbient{
-  0%,100%{transform:translateY(0) scale(1);opacity:0.72}
-  50%    {transform:translateY(-7px) scale(1.012);opacity:0.82}
+  0%,100%{transform:translateY(0) scale(1);opacity:0.36}
+  50%    {transform:translateY(-7px) scale(1.012);opacity:0.41}
 }
 @keyframes lightShift{
   0%,100%{opacity:1}
@@ -759,7 +762,7 @@ html,body{overflow-x:hidden}
   .hero::before{
     background-size:85% auto, 85% auto;
     background-position:-6% -5%, 106% 105%;
-    opacity:0.65;
+    opacity:0.32;
   }
   .hero-inner{
     grid-template-columns:1fr;
@@ -785,7 +788,7 @@ html,body{overflow-x:hidden}
   .hero::before{
     background-size:140% auto, 140% auto;
     background-position:center -6%, center 106%;
-    opacity:0.62;
+    opacity:0.31;
     filter:drop-shadow(0 0 35px rgba(21,101,192,0.7)) drop-shadow(0 0 70px rgba(66,165,245,0.4));
   }
   .navbar{padding:0 14px;height:54px}
@@ -847,7 +850,7 @@ html,body{overflow-x:hidden}
   /* iPhone SE — anéis um pouco maiores, opacidade ligeiramente menor */
   .hero::before{
     background-size:160% auto, 160% auto;
-    opacity:0.55;
+    opacity:0.28;
   }
   .hero{padding:60px 12px 24px}
   .hero-inner{gap:10px}
