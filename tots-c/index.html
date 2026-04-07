@@ -299,15 +299,10 @@ body::before{
   animation:
     teamEntry 0.95s cubic-bezier(0.22,1,0.36,1) both,
     teamFloat 7s ease-in-out infinite 1.1s;
-  /* Apenas sombra densa embaixo — o glow azul/dourado vem do ::before elíptico
-     drop-shadow AQUI criaria halo RETANGULAR se a imagem não tiver alpha */
+  /* Drop-shadows leves — preto nunca acima de 0.4 pra evitar halo retangular */
   filter:
-    drop-shadow(0 22px 44px rgba(0,0,0,0.92))
-    drop-shadow(0 0 8px rgba(21,101,192,0.35));
-  /* Fade elíptico na própria imagem — dissolve bordas sem retângulo visível */
-  -webkit-mask-image:radial-gradient(ellipse 88% 90% at 50% 46%,black 38%,rgba(0,0,0,0.72) 60%,transparent 100%);
-  mask-image:radial-gradient(ellipse 88% 90% at 50% 46%,black 38%,rgba(0,0,0,0.72) 60%,transparent 100%);
-  will-change:transform;
+    drop-shadow(0 12px 30px rgba(21,101,192,0.4))
+    drop-shadow(0 6px 15px rgba(0,0,0,0.3));
   transform-origin:center bottom;
 }
 /* Desktop: imagem maior pois CTA está em coluna separada */
@@ -318,13 +313,13 @@ body::before{
     max-width:min(44vw,480px);
   }
 }
-/* Hover desktop — intensifica a sombra embaixo (glow azul fica no ::before) */
+/* Hover desktop — intensifica o glow azul, sem aumentar sombra preta */
 @media(hover:hover){
   .team-tots-img{transition:filter 0.55s ease}
   .team-tots-img:hover{
     filter:
-      drop-shadow(0 28px 55px rgba(0,0,0,0.95))
-      drop-shadow(0 0 12px rgba(21,101,192,0.5));
+      drop-shadow(0 14px 36px rgba(21,101,192,0.6))
+      drop-shadow(0 8px 18px rgba(0,0,0,0.35));
   }
 }
 @keyframes teamEntry{
