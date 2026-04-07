@@ -7,7 +7,13 @@
 <meta name="description" content="O TOTS chegou. O maior desconto da história da Futshop também. Só quem está no grupo vai ter acesso."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://scripts.converteai.net"/>
+<link rel="preconnect" href="https://cdn.converteai.net"/>
+<link rel="preconnect" href="https://api.vturb.com.br"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=swap"/>
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="image" href="/tots-b/assets/cristais-tots.webp" fetchpriority="high"/>
+<link rel="preload" as="image" href="/tots-b/assets/logo/futshop-logo-branco.webp"/>
 <style>
 /* ============================================================
    RESET & BASE
@@ -224,19 +230,29 @@ body::before{
   width:100%;max-width:380px;
   box-shadow:0 4px 22px rgba(245,197,66,0.45),0 0 0 0 rgba(245,197,66,0.15);
   transition:transform 0.2s,box-shadow 0.2s;
-  animation:ctaPulse 2.5s ease-in-out infinite;
   position:relative;overflow:hidden;
 }
 .btn-cta::after{
   content:'';
-  position:absolute;top:-50%;left:-80%;width:50%;height:200%;
-  background:rgba(255,255,255,0.3);transform:skewX(-25deg);
+  position:absolute;top:-50%;left:0;width:50%;height:200%;
+  background:rgba(255,255,255,0.3);transform:translateX(-160%) skewX(-25deg);
   animation:btnShine 3.5s ease-in-out infinite;
 }
-@keyframes btnShine{0%,100%{left:-80%}60%{left:160%}}
+@keyframes btnShine{0%,100%{transform:translateX(-160%) skewX(-25deg)}60%{transform:translateX(320%) skewX(-25deg)}}
+.btn-cta::before{
+  content:'';
+  position:absolute;inset:-4px;
+  background:rgba(245,197,66,0.45);
+  border-radius:inherit;
+  z-index:-1;
+  filter:blur(18px);
+  opacity:0.5;
+  animation:ctaPulse 2.5s ease-in-out infinite;
+  pointer-events:none;
+}
 @keyframes ctaPulse{
-  0%,100%{box-shadow:0 6px 30px rgba(245,197,66,0.5),0 0 0 0 rgba(245,197,66,0.15)}
-  50%{box-shadow:0 10px 40px rgba(245,197,66,0.7),0 0 0 6px rgba(245,197,66,0.08)}
+  0%,100%{opacity:0.5;transform:scale(1)}
+  50%{opacity:0.85;transform:scale(1.06)}
 }
 .btn-cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,197,66,0.6)}
 .btn-cta img{width:18px;height:18px;object-fit:contain;flex-shrink:0}
@@ -630,10 +646,10 @@ body::before{
   display:flex;align-items:center;justify-content:center;
   flex-wrap:wrap;gap:8px 20px;margin-bottom:14px;
 }
-.footer-links a{font-size:0.78rem;color:#546E7A;transition:color 0.2s}
+.footer-links a{font-size:0.78rem;color:#B8B8B8;transition:color 0.2s}
 .footer-links a:hover{color:#42A5F5}
 .footer-links .sep{color:rgba(255,255,255,0.1)}
-.footer-copy{font-size:0.76rem;color:#37474F}
+.footer-copy{font-size:0.76rem;color:#B8B8B8}
 
 /* ============================================================
    UTILITIES
@@ -890,10 +906,10 @@ html,body{overflow-x:hidden}
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="#" class="navbar-logo">
-      <img src="/tots-b/assets/logo/futshop-logo-branco.webp" alt="FutShop" width="140" height="36"/>
+      <img src="/tots-b/assets/logo/futshop-logo-branco.webp" alt="FutShop" width="140" height="36" fetchpriority="high"/>
     </a>
     <button class="navbar-cta open-modal">
-      <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp"/>
+      <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp" width="18" height="18"/>
       ENTRAR NA COMUNIDADE
     </button>
   </div>
@@ -910,7 +926,7 @@ html,body{overflow-x:hidden}
     <!-- TEXT block (desktop: col 1 row 1 / mobile: 1st) -->
     <div class="hero-text">
       <div class="badge-top">
-        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp" width="18" height="18"/>
         ⭐ COMUNIDADE GRATUITA
       </div>
       <h1 class="hero-headline">
@@ -931,7 +947,7 @@ html,body{overflow-x:hidden}
     <!-- ACTIONS block (desktop: col 1 row 2 / mobile: 3rd) -->
     <div class="hero-actions">
       <button class="btn-cta open-modal">
-        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp" width="18" height="18"/>
         ENTRAR AGORA NA COMUNIDADE!
       </button>
       <div class="social-proof">
@@ -1049,7 +1065,7 @@ html,body{overflow-x:hidden}
     <p class="benefits-free">Tudo isso de graça. Só por entrar.</p>
     <div class="flex-center">
       <button class="btn-cta open-modal" style="max-width:480px">
-        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp" width="18" height="18"/>
         ENTRAR AGORA NA COMUNIDADE!
       </button>
     </div>
@@ -1072,7 +1088,7 @@ html,body{overflow-x:hidden}
     <p class="lastdance-body">Entre no grupo. É gratuito. E quando o cupom for liberado, você será o primeiro a saber.</p>
     <div class="lastdance-cta-wrap">
       <button class="btn-cta open-modal" style="max-width:460px">
-        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp" width="18" height="18"/>
         QUERO ENTRAR NA COMUNIDADE VIP!
       </button>
       <div class="social-proof">
@@ -1124,10 +1140,10 @@ html,body{overflow-x:hidden}
       <div class="trust-celebs-text">Jogadores profissionais como <strong>Jailson</strong> (ex-goleiro do Palmeiras) e <strong>Cazares</strong> (ex-Corinthians) confiam na Futshop. São mais de 40 mil entregas sem nenhum banimento — porque o nosso método é 100% automático e a EA não detecta.</div>
     </div>
     <div class="trustpilot-grid">
-      <div class="trustpilot-card"><img src="/tots-b/assets/social-proof/trustpilot-1.webp" alt="Avaliação Trustpilot 1" loading="lazy"/></div>
-      <div class="trustpilot-card"><img src="/tots-b/assets/social-proof/trustpilot-2.webp" alt="Avaliação Trustpilot 2" loading="lazy"/></div>
-      <div class="trustpilot-card"><img src="/tots-b/assets/social-proof/trustpilot-3.webp" alt="Avaliação Trustpilot 3" loading="lazy"/></div>
-      <div class="trustpilot-card"><img src="/tots-b/assets/social-proof/trustpilot-4.webp" alt="Avaliação Trustpilot 4" loading="lazy"/></div>
+      <div class="trustpilot-card"><img src="/tots-b/assets/social-proof/trustpilot-1.webp" alt="Avaliação Trustpilot 1" width="728" height="242" loading="lazy"/></div>
+      <div class="trustpilot-card"><img src="/tots-b/assets/social-proof/trustpilot-2.webp" alt="Avaliação Trustpilot 2" width="712" height="252" loading="lazy"/></div>
+      <div class="trustpilot-card"><img src="/tots-b/assets/social-proof/trustpilot-3.webp" alt="Avaliação Trustpilot 3" width="747" height="237" loading="lazy"/></div>
+      <div class="trustpilot-card"><img src="/tots-b/assets/social-proof/trustpilot-4.webp" alt="Avaliação Trustpilot 4" width="705" height="273" loading="lazy"/></div>
     </div>
   </div>
 </section>
@@ -1159,7 +1175,7 @@ html,body{overflow-x:hidden}
     </div>
     <div class="flex-center">
       <button class="btn-cta open-modal" style="max-width:520px">
-        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp" width="18" height="18"/>
         ENTRAR NO GRUPO VIP E GARANTIR MEU CUPOM!
       </button>
     </div>
@@ -1260,7 +1276,7 @@ html,body{overflow-x:hidden}
     <p class="closing-body"><strong>A comunidade é gratuita. Entrar não custa nada. Ficar de fora, custa.</strong></p>
     <div class="closing-cta-wrap">
       <button class="btn-cta open-modal" style="max-width:500px">
-        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp" width="18" height="18"/>
         ENTRAR NA COMUNIDADE VIP AGORA
       </button>
       <div class="social-proof">
@@ -1300,7 +1316,7 @@ html,body{overflow-x:hidden}
   <div class="modal-box">
     <button class="modal-close" id="modal-close">✕</button>
     <div class="modal-badge">
-      <img src="/tots-b/assets/logo/logo-whats.webp" alt="" style="width:14px;height:14px;object-fit:contain"/>
+      <img src="/tots-b/assets/logo/logo-whats.webp" alt="" width="14" height="14" style="width:14px;height:14px;object-fit:contain"/>
       COMUNIDADE VIP GRATUITA
     </div>
     <h3 class="modal-title">Garanta seu acesso ao<br/>Grupo VIP The Last Dance</h3>
@@ -1319,7 +1335,7 @@ html,body{overflow-x:hidden}
         <input type="tel" id="field-whatsapp" name="whatsapp" placeholder="(11) 99999-9999" autocomplete="tel" required/>
       </div>
       <button type="submit" class="btn-submit">
-        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp"/>
+        <img src="/tots-b/assets/logo/logo-whats.webp" alt="WhatsApp" width="18" height="18"/>
         ENTRAR NA COMUNIDADE VIP
       </button>
     </form>
