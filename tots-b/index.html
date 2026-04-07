@@ -8,10 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preconnect" href="https://scripts.converteai.net"/>
-<link rel="preconnect" href="https://cdn.converteai.net"/>
-<link rel="preconnect" href="https://api.vturb.com.br"/>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=swap"/>
-<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=optional"/>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=optional" rel="stylesheet"/>
 <link rel="preload" as="image" href="/tots-b/assets/cristais-tots.webp" fetchpriority="high"/>
 <link rel="preload" as="image" href="/tots-b/assets/logo/futshop-logo-branco.webp"/>
 <style>
@@ -159,6 +157,7 @@ body::before{
   pointer-events:none;z-index:2;
   animation:lightShift 6.7s ease-in-out infinite;
 }
+@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes crystalAmbient{
   0%,100%{transform:translateY(0) scale(1);opacity:0.36}
   50%    {transform:translateY(-7px) scale(1.012);opacity:0.41}
@@ -365,6 +364,7 @@ body::before{
 .benefits-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  grid-auto-rows:minmax(160px,auto);
   gap:20px;margin-bottom:40px;
 }
 .benefit-card{
@@ -373,6 +373,7 @@ body::before{
   border:1px solid rgba(21,101,192,0.35);
   border-top:1px solid rgba(66,165,245,0.25);
   border-radius:var(--radius);padding:24px 22px;
+  min-height:160px;
   display:flex;gap:16px;align-items:flex-start;
   box-shadow:0 8px 32px rgba(21,101,192,0.18),0 0 0 1px rgba(245,197,66,0.06),inset 0 1px 0 rgba(255,255,255,0.06);
   transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
@@ -831,8 +832,8 @@ html,body{overflow-x:hidden}
   .section-badge{font-size:0.67rem;padding:4px 11px}
   .section-sub{font-size:0.9rem}
 
-  .benefits-grid{grid-template-columns:1fr;gap:12px}
-  .benefit-card{padding:18px 16px}
+  .benefits-grid{grid-template-columns:1fr;gap:12px;grid-auto-rows:minmax(130px,auto)}
+  .benefit-card{padding:18px 16px;min-height:130px}
   .benefit-icon{width:40px;height:40px;font-size:1.3rem}
 
   .trust-stats{flex-direction:column;gap:10px}
@@ -940,7 +941,9 @@ html,body{overflow-x:hidden}
     <!-- VIDEO block (desktop: col 2 rows 1–2 / mobile: 2nd) -->
     <div class="hero-video-col">
       <div class="hero-video-wrap">
-        <vturb-smartplayer id="vid-69b842784601d16cb07075ac" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
+        <div id="vturb-placeholder" style="aspect-ratio:16/9;background:#070B1A;display:flex;align-items:center;justify-content:center;border-radius:12px">
+          <div style="width:52px;height:52px;border:3px solid rgba(245,197,66,0.25);border-top-color:#F5C542;border-radius:50%;animation:spin 1s linear infinite"></div>
+        </div>
       </div>
     </div>
 
@@ -1352,12 +1355,31 @@ html,body{overflow-x:hidden}
   </div>
 </div>
 
-<!-- VTURB PLAYER SCRIPT -->
-<script type="text/javascript">
-var s=document.createElement("script");
-s.src="https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/69b842784601d16cb07075ac/v4/player.js";
-s.async=!0;
-document.head.appendChild(s);
+<!-- VTURB PLAYER — lazy load ao entrar na viewport (melhora LCP) -->
+<script>
+(function(){
+  var placeholder=document.getElementById('vturb-placeholder');
+  if(!placeholder) return;
+  var loaded=false;
+  function loadPlayer(){
+    if(loaded) return;
+    loaded=true;
+    placeholder.innerHTML='<vturb-smartplayer id="vid-69b842784601d16cb07075ac" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>';
+    var s=document.createElement('script');
+    s.src='https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/69b842784601d16cb07075ac/v4/player.js';
+    s.async=true;
+    document.head.appendChild(s);
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting){loadPlayer();io.disconnect();}
+    },{rootMargin:'200px'});
+    io.observe(placeholder);
+  } else {
+    /* fallback para browsers sem IO */
+    setTimeout(loadPlayer,2000);
+  }
+})();
 </script>
 
 <script>
