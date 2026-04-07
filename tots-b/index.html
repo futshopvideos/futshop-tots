@@ -1514,24 +1514,33 @@ html,body{overflow-x:hidden}
 <!-- VTURB PLAYERS — Jailson e Cazares (lazy load) -->
 <script>
 (function(){
-  var PLAYER_ID='69b842784601d16cb07075ac';
-  var SCRIPT_BASE='https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/';
+  var videoPlayers={
+    'vturb-placeholder-jailson':{
+      playerId:'vid-69d512570651771d3da75486',
+      scriptSrc:'https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/69d512570651771d3da75486/v4/player.js'
+    },
+    'vturb-placeholder-cazares':{
+      playerId:'vid-69d512510651771d3da7546d',
+      scriptSrc:'https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/69d512510651771d3da7546d/v4/player.js'
+    }
+  };
   if(!('IntersectionObserver' in window)) return;
   var videoObserver=new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if(!entry.isIntersecting) return;
       var el=entry.target;
-      el.innerHTML='<vturb-smartplayer id="'+PLAYER_ID+'-'+el.id+'" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>';
+      var config=videoPlayers[el.id];
+      if(!config) return;
+      el.innerHTML='<vturb-smartplayer id="'+config.playerId+'" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>';
       var s=document.createElement('script');
-      s.src=SCRIPT_BASE+PLAYER_ID+'/v4/player.js';
+      s.src=config.scriptSrc;
       s.async=true;
       document.head.appendChild(s);
       videoObserver.unobserve(el);
     });
   },{rootMargin:'300px',threshold:0.01});
-  ['vturb-placeholder-jailson','vturb-placeholder-cazares'].forEach(function(id){
-    var el=document.getElementById(id);
-    if(el) videoObserver.observe(el);
+  document.querySelectorAll('#vturb-placeholder-jailson,#vturb-placeholder-cazares').forEach(function(el){
+    videoObserver.observe(el);
   });
 })();
 </script>
