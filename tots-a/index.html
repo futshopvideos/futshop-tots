@@ -1690,6 +1690,9 @@ function spawnCrystals(containerId, count){
     'rgba(21,101,192,0.45)','rgba(21,101,192,0.3)','rgba(66,165,245,0.38)',
     'rgba(245,197,66,0.22)','rgba(47,107,255,0.35)','rgba(100,181,246,0.3)'
   ];
+  /* DocumentFragment: todos os elementos são construídos fora do DOM,
+     um único appendChild no final — elimina N reflows forçados */
+  const frag = document.createDocumentFragment();
   for(let i=0;i<count;i++){
     const c = document.createElement('div');
     const sz = 10+Math.random()*28;
@@ -1698,21 +1701,18 @@ function spawnCrystals(containerId, count){
     const left = 3+Math.random()*94;
     const startY = 20+Math.random()*65;
     c.className='crystal';
-    c.style.cssText=`
-      width:${sz}px;height:${sz}px;
-      left:${left}%;bottom:${startY}%;
-      background:linear-gradient(135deg,${colors[i%colors.length]},rgba(255,255,255,0.04));
-      box-shadow:0 0 ${Math.round(sz*0.8)}px ${colors[i%colors.length]};
-      animation-duration:${dur}s;
-      animation-delay:-${delay}s;
-      filter:blur(${Math.random()<0.35?'0.8px':'0px'});
-    `;
-    el.appendChild(c);
+    c.style.cssText=`width:${sz}px;height:${sz}px;left:${left}%;bottom:${startY}%;background:linear-gradient(135deg,${colors[i%colors.length]},rgba(255,255,255,0.04));box-shadow:0 0 ${Math.round(sz*0.8)}px ${colors[i%colors.length]};animation-duration:${dur}s;animation-delay:-${delay}s;filter:blur(${Math.random()<0.35?'0.8px':'0px'});`;
+    frag.appendChild(c);
   }
+  el.appendChild(frag);
 }
-spawnCrystals('heroCrystals', 8);
-spawnCrystals('ldCrystals', 6);
-spawnCrystals('closingCrystals', 5);
+/* Defer spawn até idle — não compete com LCP nem com FID */
+function _spawnAll(){
+  spawnCrystals('heroCrystals', 8);
+  spawnCrystals('ldCrystals', 6);
+  spawnCrystals('closingCrystals', 5);
+}
+'requestIdleCallback' in window ? requestIdleCallback(_spawnAll,{timeout:1000}) : setTimeout(_spawnAll,400);
 
 /* ============================================================
    MODAL
