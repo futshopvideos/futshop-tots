@@ -896,6 +896,71 @@ html,body{overflow-x:hidden}
   .section{padding:96px 40px}
   .lastdance-section{padding:120px 40px}
   .closing-section{padding:120px 40px}
+  .celebs-section{padding:96px 40px}
+}
+
+/* ============================================================
+   CELEBS PROOF SECTION
+============================================================ */
+.celebs-section{
+  position:relative;z-index:5;
+  padding:80px 24px;
+  background:linear-gradient(180deg,#070B1A 0%,#0c1528 50%,#070B1A 100%);
+}
+.celebs-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(21,101,192,0.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.celebs-inner{max-width:1280px;margin:0 auto;width:100%;text-align:center}
+.celebs-headline{
+  font-family:'Russo One',sans-serif;
+  font-size:clamp(1.4rem,3vw,2.2rem);
+  line-height:1.2;margin-bottom:10px;
+  text-shadow:0 2px 20px rgba(21,101,192,0.2);
+}
+.celebs-sub{
+  color:#90A4AE;font-size:1rem;margin:0 auto 40px;
+  max-width:620px;line-height:1.55;
+}
+.celebs-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;margin-bottom:40px;text-align:left;
+}
+.celebs-label-wrap{text-align:center;margin-bottom:8px}
+.celebs-video-label{
+  font-family:'Russo One',sans-serif;
+  font-size:1.05rem;letter-spacing:2px;color:#F5C542;
+  display:block;line-height:1.1;
+}
+.celebs-video-sublabel{
+  display:block;font-size:0.78rem;color:#90A4AE;
+  letter-spacing:0.5px;margin-top:3px;
+}
+.celebs-player-wrap{
+  border-radius:12px;
+  border:1px solid rgba(66,165,245,0.2);
+  box-shadow:0 0 24px rgba(21,101,192,0.18);
+  overflow:hidden;
+}
+.celebs-placeholder{
+  aspect-ratio:16/9;width:100%;background:#070B1A;
+  display:flex;align-items:center;justify-content:center;
+}
+.celebs-actions{
+  display:flex;flex-direction:column;align-items:center;gap:20px;
+}
+.celebs-social{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;
+}
+@media(max-width:600px){
+  .celebs-section{padding:48px 14px}
+  .celebs-grid{grid-template-columns:1fr;gap:20px}
+  .celebs-sub{font-size:0.9rem}
+  .celebs-video-label{font-size:0.95rem}
+}
+@media(max-width:380px){
+  .celebs-headline{font-size:1.2rem}
 }
 </style>
 </head>
@@ -971,6 +1036,62 @@ html,body{overflow-x:hidden}
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- CELEBS PROOF -->
+<section class="celebs-section">
+  <div class="celebs-inner">
+    <div class="section-badge">🏆 QUEM ENTENDE, COMPRA NA FUTSHOP</div>
+    <h2 class="celebs-headline">QUEM ENTENDE DE FUTEBOL,<br>COMPRA NA FUTSHOP.</h2>
+    <p class="celebs-sub">Jailson (ex-Palmeiras) e Cazares (ex-Corinthians) já estão dentro. E você?</p>
+
+    <div class="celebs-grid">
+      <!-- Jailson -->
+      <div class="celebs-video-card">
+        <div class="celebs-label-wrap">
+          <span class="celebs-video-label">JAILSON</span>
+          <span class="celebs-video-sublabel">Ex-goleiro do Palmeiras</span>
+        </div>
+        <div class="celebs-player-wrap">
+          <div id="vturb-placeholder-jailson" class="celebs-placeholder">
+            <div style="width:48px;height:48px;border:3px solid rgba(245,197,66,0.25);border-top-color:#F5C542;border-radius:50%;animation:spin 1s linear infinite"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Cazares -->
+      <div class="celebs-video-card">
+        <div class="celebs-label-wrap">
+          <span class="celebs-video-label">CAZARES</span>
+          <span class="celebs-video-sublabel">Ex-jogador do Corinthians</span>
+        </div>
+        <div class="celebs-player-wrap">
+          <div id="vturb-placeholder-cazares" class="celebs-placeholder">
+            <div style="width:48px;height:48px;border:3px solid rgba(245,197,66,0.25);border-top-color:#F5C542;border-radius:50%;animation:spin 1s linear infinite"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="celebs-actions">
+      <a href="https://chat.whatsapp.com/LpABjH9eVIsDesaqOfYRrK" class="btn-cta" style="max-width:480px;width:100%">💬 ENTRAR AGORA NA COMUNIDADE!</a>
+      <div class="celebs-social">
+        <span class="sp-item">
+          <span class="sp-val">+40K</span>
+          <span class="sp-label">Entregas</span>
+        </span>
+        <span class="sep" style="color:rgba(255,255,255,0.2)">|</span>
+        <span class="sp-item">
+          <span class="sp-val">0</span>
+          <span class="sp-label">Banimentos</span>
+        </span>
+        <span class="sep" style="color:rgba(255,255,255,0.2)">|</span>
+        <span class="sp-item">
+          <span class="sp-val"><span class="sp-stars">★★★★★</span> 5.0</span>
+          <span class="sp-label">Trustpilot</span>
+        </span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1379,6 +1500,31 @@ html,body{overflow-x:hidden}
     /* fallback para browsers sem IO */
     setTimeout(loadPlayer,2000);
   }
+})();
+</script>
+
+<!-- VTURB PLAYERS — Jailson e Cazares (lazy load) -->
+<script>
+(function(){
+  var PLAYER_ID='69b842784601d16cb07075ac';
+  var SCRIPT_BASE='https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/';
+  if(!('IntersectionObserver' in window)) return;
+  var videoObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el=entry.target;
+      el.innerHTML='<vturb-smartplayer id="'+PLAYER_ID+'-'+el.id+'" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>';
+      var s=document.createElement('script');
+      s.src=SCRIPT_BASE+PLAYER_ID+'/v4/player.js';
+      s.async=true;
+      document.head.appendChild(s);
+      videoObserver.unobserve(el);
+    });
+  },{rootMargin:'300px',threshold:0.01});
+  ['vturb-placeholder-jailson','vturb-placeholder-cazares'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) videoObserver.observe(el);
+  });
 })();
 </script>
 
