@@ -970,9 +970,9 @@ html,body{overflow-x:hidden}
 @media(max-width:380px){
   .celebs-headline{font-size:1.2rem}
 }
-/* Vídeo Jailson mobile — reduzido 30% */
+/* Vídeo cliente mobile */
 @media(max-width:768px){
-  #vturb-placeholder-jailson{max-width:70%;margin:0 auto}
+  #vturb-placeholder-cliente{max-width:70%;margin:0 auto}
 }
 </style>
 </head>
@@ -1056,21 +1056,9 @@ html,body{overflow-x:hidden}
   <div class="celebs-inner">
     <div class="section-badge">🏆 JUGADORES DE PRIMERA DIVISIÓN COMPRAN MONEDAS EN FUTSHOP</div>
     <h2 class="celebs-headline">QUIEN ENTIENDE DE FÚTBOL,<br>COMPRA EN FUTSHOP.</h2>
-    <p class="celebs-sub">Jailson (ex-Palmeiras) y Cazares (ex-Corinthians) ya están dentro. ¿Y tú?</p>
+    <p class="celebs-sub">Mira lo que dicen Cazares y nuestros clientes reales sobre FutShop</p>
 
     <div class="celebs-grid">
-      <!-- Jailson -->
-      <div class="celebs-video-card">
-        <div class="celebs-label-wrap">
-          <span class="celebs-video-label">JAILSON</span>
-          <span class="celebs-video-sublabel">Ex portero del Palmeiras, primera división de Brasil</span>
-        </div>
-        <div class="celebs-player-wrap">
-          <div id="vturb-placeholder-jailson" class="celebs-placeholder">
-            <div style="width:48px;height:48px;border:3px solid rgba(245,197,66,0.25);border-top-color:#F5C542;border-radius:50%;animation:spin 1s linear infinite"></div>
-          </div>
-        </div>
-      </div>
       <!-- Cazares -->
       <div class="celebs-video-card">
         <div class="celebs-label-wrap">
@@ -1079,6 +1067,18 @@ html,body{overflow-x:hidden}
         </div>
         <div class="celebs-player-wrap">
           <div id="vturb-placeholder-cazares" class="celebs-placeholder">
+            <div style="width:48px;height:48px;border:3px solid rgba(245,197,66,0.25);border-top-color:#F5C542;border-radius:50%;animation:spin 1s linear infinite"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Cliente real -->
+      <div class="celebs-video-card">
+        <div class="celebs-label-wrap">
+          <span class="celebs-video-label">CLIENTE FUTSHOP</span>
+          <span class="celebs-video-sublabel">Opinión real de un cliente</span>
+        </div>
+        <div class="celebs-player-wrap">
+          <div id="vturb-placeholder-cliente" class="celebs-placeholder">
             <div style="width:48px;height:48px;border:3px solid rgba(245,197,66,0.25);border-top-color:#F5C542;border-radius:50%;animation:spin 1s linear infinite"></div>
           </div>
         </div>
@@ -1252,7 +1252,7 @@ html,body{overflow-x:hidden}
   <div class="section-inner">
     <div class="section-badge">🔒 CONFIANZA Y SEGURIDAD</div>
     <h2 class="section-title">Futshop tiene más de 40 mil entregas y cero baneos.</h2>
-    <p class="section-sub">Método automático exclusivo. Sin intervención humana. Sin riesgo para tu cuenta. Hasta <strong>Jailson</strong>, ex portero del Palmeiras, y <strong>Cazares</strong>, que jugó en el Corinthians, compran en Futshop.</p>
+    <p class="section-sub">Método automático exclusivo. Sin intervención humana. Sin riesgo para tu cuenta. <strong>Cazares</strong>, que jugó en el Corinthians, y miles de clientes compran en Futshop.</p>
     <div class="trust-stats">
       <div class="trust-stat">
         <div class="trust-stat-icon">📦</div>
@@ -1273,7 +1273,7 @@ html,body{overflow-x:hidden}
     </div>
     <div class="trust-celebs">
       <div class="trust-celebs-icon">⚽</div>
-      <div class="trust-celebs-text">Jugadores profesionales como <strong>Jailson</strong> (ex portero del Palmeiras) y <strong>Cazares</strong> (ex-Corinthians) confían en Futshop. Son más de 40 mil entregas sin ningún baneo — porque nuestro método es 100% automático y EA no lo detecta.</div>
+      <div class="trust-celebs-text"><strong>Cazares</strong> (ex-Corinthians) y miles de clientes de FutShop confían en nosotros. Más de 40 mil entregas sin ningún baneo — porque nuestro método es 100% automático y EA no lo detecta.</div>
     </div>
     <div class="trustpilot-grid">
       <div class="trustpilot-card"><img src="/tots-b-es/assets/social-proof/trustpilot-1.webp" alt="Valoración Trustpilot 1" width="728" height="242" loading="lazy"/></div>
@@ -1366,7 +1366,7 @@ html,body{overflow-x:hidden}
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Cero. Futshop usa un método <strong>100% automático</strong> que EA no detecta. Son más de 40 mil entregas sin ningún baneo. Hasta jugadores profesionales como <strong>Jailson</strong> (Palmeiras) y <strong>Cazares</strong> (Corinthians) compran en Futshop.</div>
+          <div class="faq-answer-inner">Cero. Futshop usa un método <strong>100% automático</strong> que EA no detecta. Son más de 40 mil entregas sin ningún baneo. <strong>Cazares</strong> (Corinthians) y miles de clientes reales también compran en Futshop.</div>
         </div>
       </div>
       <div class="faq-item">
@@ -1515,17 +1515,17 @@ html,body{overflow-x:hidden}
 })();
 </script>
 
-<!-- VTURB PLAYERS — Jailson e Cazares (lazy load) -->
+<!-- VTURB PLAYERS — Cazares + Cliente (lazy load) -->
 <script>
 (function(){
   var videoPlayers={
-    'vturb-placeholder-jailson':{
-      playerId:'vid-69d512570651771d3da75486',
-      scriptSrc:'https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/69d512570651771d3da75486/v4/player.js'
-    },
     'vturb-placeholder-cazares':{
-      playerId:'vid-69d512510651771d3da7546d',
-      scriptSrc:'https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/69d512510651771d3da7546d/v4/player.js'
+      playerId:'vid-69d510c8ea7d2fe7053048f9',
+      scriptSrc:'https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/69d510c8ea7d2fe7053048f9/v4/player.js'
+    },
+    'vturb-placeholder-cliente':{
+      playerId:'vid-69d510fbea7d2fe7053049b3',
+      scriptSrc:'https://scripts.converteai.net/bb456325-3f24-4aed-bfc9-7f8e2c0f2dc5/players/69d510fbea7d2fe7053049b3/v4/player.js'
     }
   };
   if(!('IntersectionObserver' in window)) return;
@@ -1543,7 +1543,7 @@ html,body{overflow-x:hidden}
       videoObserver.unobserve(el);
     });
   },{rootMargin:'100px',threshold:0.1});
-  document.querySelectorAll('#vturb-placeholder-jailson,#vturb-placeholder-cazares').forEach(function(el){
+  document.querySelectorAll('#vturb-placeholder-cazares,#vturb-placeholder-cliente').forEach(function(el){
     videoObserver.observe(el);
   });
 })();
